@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.Rhistory
+.RData
+.DS_Store
+total/data/
+total/manuscript/
+total/figures/
+modules/*/tables/
