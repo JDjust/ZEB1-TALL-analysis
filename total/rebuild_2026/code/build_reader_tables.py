@@ -41,7 +41,7 @@ book = Workbook()
 book.remove(book.active)
 
 
-def add_sheet(name, title, headers, rows, note=""):
+def add_sheet(name, title, headers, rows, note="", audit_survival=False):
     ws = book.create_sheet(name)
     ws.sheet_view.showGridLines = False
     ws.append([title])
@@ -53,7 +53,7 @@ def add_sheet(name, title, headers, rows, note=""):
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=len(headers))
     ws["A2"].font = Font(name="Arial", size=9, italic=True, color="52646C")
     ws["A2"].alignment = Alignment(wrap_text=True, vertical="center")
-    ws.row_dimensions[2].height = 30 if len(note) > 110 else 23
+    ws.row_dimensions[2].height = 39 if len(note) > 200 else (30 if len(note) > 110 else 23)
     ws.append(headers)
     ws.row_dimensions[3].height = 34
     edge = Side(style="hair", color="CBD5D8")
@@ -64,13 +64,16 @@ def add_sheet(name, title, headers, rows, note=""):
         c.border = Border(bottom=edge)
     for i, row in enumerate(rows, 4):
         ws.append(row)
-        ws.row_dimensions[i].height = 28 if any(len(str(v)) > 55 for v in row) else 22
+        ws.row_dimensions[i].height = 42 if any(len(str(v)) > 95 for v in row) else (28 if any(len(str(v)) > 55 for v in row) else 22)
         for cell in ws[i]:
             cell.font = Font(name="Arial", size=9, color="203744")
             cell.alignment = Alignment(wrap_text=True, vertical="center")
             cell.border = Border(bottom=edge)
             if i % 2:
                 cell.fill = PatternFill("solid", fgColor="F4F7F8")
+            if audit_survival and row[0] in ("Event-free survival", "Overall survival"):
+                cell.font = Font(name="Arial", size=9, italic=True, color="6D777B")
+                cell.fill = PatternFill("solid", fgColor="EDF0F1")
     for j in range(1, len(headers)+1):
         vals = [str(headers[j-1])] + [str(r[j-1]) for r in rows]
         width = min(44, max(12, max(min(len(v), 46) for v in vals) + 2))
@@ -100,12 +103,14 @@ for ep in endpoints:
                ci(b), pnum(b["p"]), pnum(b["endpoint_bh_fdr"]), ci(c), pnum(c["p"]), pnum(c["endpoint_bh_fdr"])])
     s4.append([ep, c["method"], f'{c["n"]}/{c["events"]}', ci(c),
                pnum(c["p"]), pnum(c["endpoint_bh_fdr"]), pnum(c["ph_balance_p"]),
-               pnum(c["ph_global_p"]), c["status"]])
+               pnum(c["ph_global_p"]),
+               ("AUDIT ONLY — " if c["method"] == "Cox PH" else "") + c["status"]])
 add_sheet("Table S1", "Supplementary Table S1 | Clinical attenuation across three models",
           ["Endpoint","Measure","n/events","Unadjusted OR/HR (95% CI)","P","BH FDR",
            "Subtype adjusted OR/HR (95% CI)","P","BH FDR",
            "Subtype + age + sex + WBC OR/HR (95% CI)","P","BH FDR"],s1,
-          "Effect per one-unit higher ZEB balance. BH correction across six endpoints separately within each model. Full model uses endpoint-specific complete cases (see S4).")
+          "Effect per one-unit higher ZEB balance. BH correction across six endpoints within each model. EFS/OS P and FDR are retained as audit outputs only: fully adjusted Cox fits had sparse-subtype convergence warnings and do not support survival inference (see S4).",
+          audit_survival=True)
 
 dataset = read(DATA/"supplementary_tables/Table_S2_dataset_units.tsv")
 for r in dataset:
@@ -148,7 +153,8 @@ add_sheet("Table S3","Supplementary Table S3 | All 17 subtype developmental resi
 add_sheet("Table S4","Supplementary Table S4 | Fully adjusted clinical sensitivity",
           ["Endpoint","Method","n/events","OR/HR (95% CI)","P","BH FDR",
            "Balance PH P","Global PH P","Fit status"],s4,
-          "Model includes 17-subtype indicators, age, sex and log10 white-cell count. PH columns apply only to Cox models; inspect sparse-subtype warnings in source data.")
+          "Model includes 17-subtype indicators, age, sex and log10 white-cell count. EFS/OS Cox fits had sparse-subtype convergence warnings: their P/FDR values are audit outputs only, not evidence of survival association. PH tests do not resolve convergence instability.",
+          audit_survival=True)
 
 q1 = read(GATE/"q1_baseline.tsv")
 q1adj = read(GATE/"q1_sensitivity_ols.tsv")

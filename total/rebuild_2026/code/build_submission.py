@@ -209,17 +209,17 @@ cover = """To the Editor-in-Chief, *Haematologica*
 
 Dear Editor,
 
-We are pleased to submit our manuscript entitled **"Molecular subtypes of T-cell acute lymphoblastic leukemia differentially reconfigure a developmentally patterned ZEB1–ZEB2 axis"** for consideration as an Original Article in *Haematologica*.
+We are pleased to submit our manuscript entitled **"Subtype-associated ZEB1–ZEB2 expression patterns in T-cell acute lymphoblastic leukemia after developmental-expression adjustment"** for consideration as an Original Article in *Haematologica*.
 
-Contemporary genomic studies now resolve T-cell acute lymphoblastic leukemia (T-ALL) into at least 17 driver-defined molecular subtypes. How much of a subtype's gene-expression configuration is inherited from its normal developmental position, and how much reflects the molecular subtype itself, has not been addressed systematically. We examined this question for the ZEB1–ZEB2 axis by combining four normal human thymus references with a 1,309-patient molecularly annotated diagnostic cohort, and tested the resulting framework in independent bulk RNA, patient-matched single-cell, lesion-defined and chromatin-contact data.
+Contemporary genomic studies now resolve T-cell acute lymphoblastic leukemia (T-ALL) into at least 17 driver-defined molecular subtypes. We asked whether their relative ZEB1–ZEB2 expression differs after conditioning on a developmental-expression proxy. We combined four normal human thymus references with a 1,309-patient molecularly annotated diagnostic cohort and examined narrower contrasts in independent bulk RNA, patient-matched single-cell, lesion-defined and chromatin-contact data.
 
 We believe three findings will interest your readership:
 
-1. A ZEB-independent developmental coordinate explains 26% of ZEB1–ZEB2 balance variation in T-ALL, and molecular subtype contributes a further 14 percentage points after development (P = 7.8 × 10⁻⁴⁸). ETP-like leukemia, despite its low raw balance, lies close to its developmental expectation, whereas BCL11B, SPI1 and LMO2 γδ-like subtypes deviate strongly.
+1. A ZEB-independent developmental-expression proxy accounts for 26% of ZEB1–ZEB2 balance variation in this cohort; molecular subtype adds 14 percentage points to the combined model (P = 7.8 × 10⁻⁴⁸). ETP-like leukemia, despite its low raw balance, lies closer to its cohort-fitted expectation at the same proxy score, whereas BCL11B, SPI1 and LMO2 γδ-like subtypes have more negative residuals.
 2. All 12 BCL11B-rearranged leukemias in a lesion-defined series converge on ZEB2-dominant expression, including seven cases in which ZEB2 is not the rearrangement partner.
-3. Unadjusted clinical associations of ZEB balance with induction failure and minimal residual disease largely attenuate after molecular-subtype adjustment. We do not claim independent clinical utility.
+3. Unadjusted clinical associations of ZEB balance with induction failure and minimal residual disease largely attenuate after molecular-subtype adjustment. Fully adjusted Cox outputs are retained for audit only because of sparse-subtype convergence warnings; we do not claim independent clinical utility.
 
-The within-cohort developmental-expression adjustment distinguishes a measured expression proxy from subtype-associated balance differences without requiring cross-platform residual calibration. Cross-fitted and alternative-score analyses assess the robustness of the central contrast within the diagnostic cohort.
+Within-cohort adjustment provides a common descriptive reference; a separate joint model tests conditional subtype association, and held-out subtype fits assess the reference curve's sensitivity to each target subtype. Alternative scores support the central BCL11B–ETP-like contrast within the diagnostic cohort.
 
 The study used publicly available, de-identified data. The final analysis and figure code, the submitted supplementary table workbook, and aggregate robustness source summaries are public at https://github.com/JDjust/ZEB1-TALL-analysis. AI assistance with text, analysis-code preparation and data visualization is disclosed on the title page.
 

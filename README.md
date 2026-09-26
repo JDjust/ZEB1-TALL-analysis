@@ -2,7 +2,7 @@
 
 Code accompanying the manuscript
 
-> **Molecular subtypes of T-cell acute lymphoblastic leukemia differentially reconfigure a developmentally patterned ZEB1–ZEB2 axis**
+> **Subtype-associated ZEB1–ZEB2 expression patterns in T-cell acute lymphoblastic leukemia after developmental-expression adjustment**
 > Zhou Q\*, Ni Q\*, Wang H, Liang X, Li Y, Xu H, Wu C, Li L (\*equal contribution).
 
 The study is a secondary analysis of public, de-identified datasets. This repository contains code and aggregate reader-facing results; no patient-level data are redistributed.
@@ -66,6 +66,7 @@ The `supplementary_tables/` directory provides the submitted Excel workbook and 
 - Balance is z(ZEB1) − z(ZEB2) on TMM-normalized log2 CPM. The developmental coordinate is z(CD1A) − [z(CD34) + z(LYL1)]/2 and excludes ZEB1, ZEB2 and LMO2.
 - Developmental residuals come from `balance ~ ns(coordinate, df = 3)` fitted within the diagnostic cohort; subtype effects from the same spline plus 17 subtypes with sum-to-zero contrasts, HC3 robust tests and Benjamini–Hochberg correction.
 - Figure 7 reports same-cohort leave-one-subtype-out fitting, three leave-one-marker-out scores, an expanded score, repeated subtype-stratified five-fold model comparison, and fixed BCL11B comparisons. These checks do not constitute independent replication of the complete 17-subtype ranking. HiChIP is supplementary and exploratory.
+- Fully adjusted EFS/OS Cox fits emitted sparse-subtype convergence warnings. Their estimates, P values and FDR remain in Supplementary Tables S1/S4 as audit outputs; the manuscript does not use them to infer survival associations. Supplementary Figure S8 marks these outputs separately from the binary endpoints.
 - Single-cell comparisons are made on patient-level pseudobulks, not on cells.
 
 ## Contact

@@ -59,32 +59,41 @@ surv <- clinical[clinical$endpoint %in%
 surv$endpoint <- factor(surv$endpoint,
   levels = c('Event-free survival', 'Overall survival'),
   labels = c('EFS', 'OS'))
-pD <- ggplot(surv, aes(estimate, adjustment, colour = adjustment)) +
+pD <- ggplot(surv, aes(estimate, adjustment)) +
   geom_vline(xintercept = 1, colour = grey, linewidth = .4) +
   geom_segment(aes(x = ci_low, xend = ci_high, yend = adjustment),
-               linewidth = .65) + geom_point(size = 1.7) +
+               colour = grey, linetype = 'dashed', linewidth = .65) +
+  geom_point(size = 1.8, shape = 1, colour = ink) +
   facet_wrap(~endpoint, ncol = 2) +
-  scale_colour_manual(values = model_cols, guide = 'none') +
   scale_x_log10(limits = c(.55, 1.45), breaks = c(.6, 1, 1.4)) +
-  labs(title = 'D  EFS and OS attenuation',
-       subtitle = 'Hazard ratio per unit balance', x = 'HR', y = NULL) +
+  labs(title = 'D  EFS and OS model outputs',
+       subtitle = 'Sparse-subtype Cox warnings; descriptive only',
+       x = 'HR', y = NULL) +
   theme_plate + theme(strip.text = element_text(size = 7))
 
 full_plot <- full
 full_plot$endpoint <- factor(full_plot$endpoint,
   levels = rev(c('Induction failure', 'M2/M3 morphology', 'MRD >=0.1%',
                  'MRD >=0.01%', 'Event-free survival', 'Overall survival')))
+full_plot$unstable_cox <- full_plot$method == 'Cox PH'
+full_plot$inferential_fdr <- !full_plot$unstable_cox &
+  full_plot$endpoint_bh_fdr < .05
 pE <- ggplot(full_plot, aes(estimate, endpoint)) +
   geom_vline(xintercept = 1, colour = grey, linewidth = .4) +
-  geom_segment(aes(x = ci_low, xend = ci_high, yend = endpoint),
+  geom_segment(aes(x = ci_low, xend = ci_high, yend = endpoint,
+                   linetype = unstable_cox),
                colour = grey, linewidth = .7) +
-  geom_point(aes(fill = endpoint_bh_fdr < .05), shape = 21,
+  geom_point(aes(fill = inferential_fdr, shape = unstable_cox),
              size = 2.0, colour = ink) +
+  scale_shape_manual(values = c('FALSE' = 21, 'TRUE' = 4),
+                     guide = 'none') +
+  scale_linetype_manual(values = c('FALSE' = 'solid', 'TRUE' = 'dashed'),
+                        guide = 'none') +
   scale_fill_manual(values = c('TRUE' = purple, 'FALSE' = 'white'),
                     guide = 'none') +
   scale_x_log10(limits = c(.55, 1.25), breaks = c(.6, .8, 1, 1.2)) +
   labs(title = 'E  All six fully adjusted endpoints',
-       subtitle = 'Filled: six-endpoint BH FDR < 0.05',
+       subtitle = 'Filled: binary FDR < 0.05; x: Cox audit only',
        x = 'OR or HR per unit balance', y = NULL) + theme_plate
 
 lim_balance <- subset(lim, metric == 'balance')
