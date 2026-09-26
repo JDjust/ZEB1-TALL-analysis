@@ -41,15 +41,15 @@ stopifnot(!anyNA(sub$normal_reference_median))
 ink <- "#152b39"; muted <- "#78919c"; zeb1 <- "#bc3446"
 zeb2 <- "#246b96"; teal <- "#168b82"; gold <- "#c28830"
 purple <- "#776298"; font <- "Arial"
-theme_pub <- theme_classic(base_family = font, base_size = 11.4) +
-  theme(plot.title = element_text(colour = ink, face = "bold", size = 12.3,
+theme_pub <- theme_classic(base_family = font, base_size = 8) +
+  theme(plot.title = element_text(colour = ink, face = "bold", size = 9,
                                   margin = margin(b = 4)),
-        plot.subtitle = element_text(colour = ink, size = 9.2),
-        plot.caption = element_text(colour = ink, size = 8.7),
-        axis.title = element_text(colour = ink, size = 10),
-        axis.text = element_text(colour = ink, size = 9.2),
-        legend.text = element_text(colour = ink, size = 8.9),
-        legend.title = element_text(colour = ink, size = 9),
+        plot.subtitle = element_text(colour = ink, size = 7.4),
+        plot.caption = element_text(colour = ink, size = 7),
+        axis.title = element_text(colour = ink, size = 8),
+        axis.text = element_text(colour = ink, size = 7.3),
+        legend.text = element_text(colour = ink, size = 7.1),
+        legend.title = element_text(colour = ink, size = 7.3),
         panel.grid.major.y = element_line(colour = "#e8eef0", linewidth = .28),
         plot.margin = margin(6, 7, 6, 7))
 state <- function(x) ifelse(x == "BCL11B", "BCL11B",
@@ -69,8 +69,8 @@ pA <- ggplot(normal, aes(dev, balance)) +
              size = 3.0) +
   scale_fill_manual(values = c(early = zeb2, mid = teal, late = gold),
                     labels = c("Early", "Cortical / DP", "Later")) +
-  labs(title = "A  Normal thymus defines the trajectory shape",
-       subtitle = "20 stage units / normal-source standardization / R² = 0.73",
+  labs(title = "A  Normal thymus trajectory",
+       subtitle = "20 stage units; within-source z-scores",
        x = "Developmental coordinate", y = "ZEB1 - ZEB2 balance", fill = NULL) +
   theme_pub + theme(legend.position = "bottom")
 
@@ -84,8 +84,8 @@ pB <- ggplot(patient, aes(dev, balance)) +
             colour = ink, linewidth = 1.05) +
   geom_point(data = key, aes(colour = state), alpha = .78, size = 1.05) +
   scale_colour_manual(values = cols[c("BCL11B", "ETP-like", "TLX3")]) +
-  labs(title = "B  Developmental expectation fitted in T-ALL",
-       subtitle = "1,309 patients / curve fitted within the same RNA cohort",
+  labs(title = "B  Within-cohort expectation",
+       subtitle = "1,309 patients; curve fitted in this cohort",
        x = "Developmental coordinate", y = "ZEB1 - ZEB2 balance", colour = NULL) +
   theme_pub + theme(legend.position = "bottom")
 
@@ -104,8 +104,10 @@ pC <- ggplot(patient, aes(residual_within, label)) +
   labs(title = "C  Within-cohort residual landscape",
        subtitle = "All patients retained; diamonds show subtype medians",
        x = "Observed minus cohort-expected balance", y = NULL) +
-  scale_y_discrete(limits = ord, drop = FALSE) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink))
+  scale_y_discrete(limits = ord, drop = FALSE,
+                   labels = function(x) ifelse(x %in%
+                     c("BCL11B", "ETP-like", "TLX3"), x, "")) +
+  theme_pub + theme(axis.text.y = element_text(size = 7.2, colour = ink))
 
 sub$state <- state(as.character(sub$label))
 pD <- ggplot(sub, aes(residual_within_median, label)) +
@@ -114,10 +116,10 @@ pD <- ggplot(sub, aes(residual_within_median, label)) +
                    yend = label), colour = "#9db4ba", linewidth = .8) +
   geom_point(aes(colour = state), size = 2.6) +
   scale_colour_manual(values = cols, guide = "none") +
-  labs(title = "D  Residual medians with refit uncertainty",
+  labs(title = "D  Residual medians and 95% CI",
        subtitle = "3,000 stratified patient bootstraps / percentile 95% CI",
        x = "Median within-cohort residual", y = NULL) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink))
+  theme_pub + theme(axis.text.y = element_text(size = 7.2, colour = ink))
 
 sub$sig <- ifelse(sub$adjusted_effect_bh_fdr < .05, "BH FDR < 0.05", "BH FDR >= 0.05")
 pE <- ggplot(sub, aes(adjusted_effect, label)) +
@@ -131,7 +133,7 @@ pE <- ggplot(sub, aes(adjusted_effect, label)) +
        subtitle = "Spline + 17 subtypes / sum contrasts / bootstrap 95% CI",
        x = "Adjusted effect vs subtype-average intercept", y = NULL,
        fill = NULL) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink),
+  theme_pub + theme(axis.text.y = element_text(size = 7.2, colour = ink),
                     legend.position = "bottom")
 
 focus <- c("BCL11B", "SPI1", "LMO2 gamma-delta-like", "TME-enriched",
@@ -145,16 +147,16 @@ pF <- ggplot(sen, aes(y = label)) +
   geom_point(aes(x = residual_within_median), colour = teal, size = 2.65) +
   geom_point(aes(x = normal_reference_median), colour = purple,
              shape = 17, size = 2.55) +
-  labs(title = "F  Cross-cohort projection is sensitivity only",
+  labs(title = "F  Projection sensitivity",
        subtitle = "Circle: within cohort  /  triangle: normal-stage projection",
        caption = "Separately standardized cohorts; BCL11B 14/18 outside normal domain",
        x = "Subtype median residual (different reference scales)", y = NULL) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink))
+  theme_pub + theme(axis.text.y = element_text(size = 7.2, colour = ink))
 
 top <- wrap_plots(pA, pB, ncol = 2, widths = c(1, 1.25))
-mid <- wrap_plots(pC, pD, ncol = 2, widths = c(1.15, 1))
-bottom <- wrap_plots(pE, pF, ncol = 2, widths = c(1.12, 1))
-full <- wrap_plots(top, mid, bottom, ncol = 1, heights = c(.8, 1.43, 1.36))
+pE <- pE + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+full <- top / pC / (pD | pE) / pF +
+  plot_layout(heights = c(.82, 1.12, 1.40, .78))
 
 wt <- function(x, name) write.table(x, file.path(sdir, name), sep = "\t",
                                     quote = FALSE, row.names = FALSE, na = "NA")
@@ -172,13 +174,13 @@ wt(sub[, c("subtype", "n", "dev_median", "residual_within_median",
    "F3D-F_subtype_statistics.tsv")
 
 base_file <- file.path(out, "F3")
-ggsave(paste0(base_file, ".pdf"), full, width = 14.4, height = 13.0,
+ggsave(paste0(base_file, ".pdf"), full, width = 7.09, height = 8.2,
        units = "in", device = cairo_pdf, bg = "white", limitsize = FALSE)
-ggsave(paste0(base_file, ".svg"), full, width = 14.4, height = 13.0,
+ggsave(paste0(base_file, ".svg"), full, width = 7.09, height = 8.2,
        units = "in", device = svg, bg = "white", limitsize = FALSE)
-ggsave(paste0(base_file, ".png"), full, width = 14.4, height = 13.0,
+ggsave(paste0(base_file, ".png"), full, width = 7.09, height = 8.2,
        units = "in", device = agg_png, dpi = 300, bg = "white", limitsize = FALSE)
-ggsave(paste0(base_file, ".tiff"), full, width = 14.4, height = 13.0,
+ggsave(paste0(base_file, ".tiff"), full, width = 7.09, height = 8.2,
        units = "in", device = agg_tiff, dpi = 300, bg = "white", limitsize = FALSE)
 writeLines(capture.output(sessionInfo()), paste0(base_file, "_R_sessionInfo.txt"))
 manifest <- data.frame(figure = "F3", panel = LETTERS[1:6],

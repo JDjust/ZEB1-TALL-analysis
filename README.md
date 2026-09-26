@@ -5,7 +5,7 @@ Code accompanying the manuscript
 > **Molecular subtypes of T-cell acute lymphoblastic leukemia differentially reconfigure a developmentally patterned ZEB1–ZEB2 axis**
 > Zhou Q\*, Ni Q\*, Wang H, Liang X, Li Y, Xu H, Wu C, Li L (\*equal contribution).
 
-The study is a secondary analysis of public, de-identified datasets. This repository contains code only; no patient-level data are redistributed.
+The study is a secondary analysis of public, de-identified datasets. This repository contains code and aggregate reader-facing results; no patient-level data are redistributed.
 
 ## Repository layout
 
@@ -14,6 +14,7 @@ The study is a secondary analysis of public, de-identified datasets. This reposi
 | `modules/module1` … `modules/module10` | Upstream analysis modules (normal thymus references, Pölönen cohort balance and residual models, independent bulk cohorts, Lim single-cell pseudobulk, HiChIP/scATAC, clinical models). |
 | `total/code/` | Targeted validation and sensitivity analyses that produce the analysis tables used by the figures (developmental coordinate, residual models, GSE146901, GSE162280, Lim pseudobulk, chromatin summaries, clinical models). |
 | `total/rebuild_2026/code/` | Figure and manuscript pipeline for the submitted version (R/ggplot2). |
+| `supplementary_tables/` | Final reader-facing Tables S1–S8 and aggregate source summaries for Table S8. |
 
 ### Figure pipeline (`total/rebuild_2026/code/`)
 
@@ -24,12 +25,14 @@ The study is a secondary analysis of public, de-identified datasets. This reposi
 | `build_f2_ggplot.R` | Figure 2 (subtype ZEB configurations). |
 | `build_f3_revision2.R` | Figure 3 (within-cohort developmental residuals, bootstrap intervals, joint model). |
 | `build_f4_ggplot.R` | Figure 4 (BCL11B-rearranged leukemias). |
-| `build_f5_ggplot.R`, `build_f6_ggplot.R`, `build_s8_ggplot.R`, `build_s9_ggplot.R`, `build_s12_ggplot.R` + `build_main_validation_relayout.R` | Figures 5–7 (independent bulk RNA, Lim single-cell states, HiChIP). |
-| `build_s1_ggplot.R` … `build_s12_ggplot.R` + `build_supplement_consolidated.R` | Supplementary Figures S1–S7. |
+| `build_main_validation_relayout.R`, `build_f6_gateA.R` | Figures 5–6 (independent bulk RNA and Lim patient-level pseudobulk). |
+| `revision3_reviewer_robustness.R`, `build_f7_revision3.R` | Leave-one-subtype-out residuals, alternative developmental scores, adjusted/cross-validated R², fixed and matched BCL11B contrasts, and current Figure 7. |
+| `build_s3_audit.R`, `build_s8_clinical_audit.R`, `build_supplement_consolidated.R` | Supplementary Figures S1–S8; the former HiChIP main plate is retained as S9. |
 | `revision2_statistical_hardening.R` | 3,000 stratified patient bootstraps and the spline-plus-subtype joint model (seed 20260926). |
 | `revision2_clinical_sensitivity.R` | Age-, sex- and white-cell-count-adjusted clinical sensitivity (Supplementary Table S4). |
-| `finalize_journal_figures.R` | Runs every figure builder and exports the 180-mm journal versions (PDF with editable text, 600-dpi TIFF, PNG). |
-| `build_submission.py` | Assembles manuscript, Supplementary Information and supplementary-table files. |
+| `finalize_journal_figures.R` | Runs current figure builders at their native print dimensions (vector PDF, 600-dpi TIFF, PNG); no second geometry or font scaling. |
+| `build_reader_tables.py`, `render_supplement_tables_pdf.py` | Reader-facing Supplementary Tables S1–S8 from full-precision derived TSVs. |
+| `build_submission.py`, `build_vector_preview.py` | Local manuscript and PDF assembly from the author-maintained Markdown, tables and figures. |
 
 ## Reproducing the figures
 
@@ -37,12 +40,15 @@ Requirements: R ≥ 4.4 with `ggplot2`, `patchwork`, `ragg`, `readr`, `ggalluvia
 
 ```bash
 cd total/rebuild_2026/code
-Rscript finalize_journal_figures.R          # all main and supplementary figures
+Rscript revision3_reviewer_robustness.R     # requires original 1,309-patient files
+Rscript finalize_journal_figures.R          # all current main and supplementary figures
 Rscript finalize_journal_figures.R F3 S2    # selected figures
-python build_submission.py                  # documents and tables
+python build_reader_tables.py               # requires derived TSVs
 ```
 
-The figure scripts read the analysis tables under `total/data/validation/` and `modules/module*/tables/`. These tables are derived from the public datasets below and are not redistributed here; regenerate them with the module and `total/code/` scripts after obtaining the source data under each resource's access terms. Paths are resolved relative to the repository root.
+The scripts read analysis tables under `total/data/validation/`, `total/rebuild_2026/data/source_data_rebuilt/`, `modules/module*/tables/`, and the original Pölönen count object under `data/polonen_syn54032669/`. Patient-level inputs and patient-level derived tables are not redistributed here. Obtain the source studies under their access terms and regenerate tables with the module and `total/code/` scripts. The current Figure 7 builder and robustness analysis derive the repository root from their script location. Document assembly also requires author-maintained manuscript Markdown and a local Pandoc/Chrome setup; it is not necessary to rerun the numerical analyses.
+
+The `supplementary_tables/` directory provides the submitted Excel workbook and five aggregate S8 TSVs. Individual-patient residuals and matched-pair identifiers remain outside this public repository.
 
 ## Source datasets
 
@@ -59,6 +65,7 @@ The figure scripts read the analysis tables under `total/data/validation/` and `
 
 - Balance is z(ZEB1) − z(ZEB2) on TMM-normalized log2 CPM. The developmental coordinate is z(CD1A) − [z(CD34) + z(LYL1)]/2 and excludes ZEB1, ZEB2 and LMO2.
 - Developmental residuals come from `balance ~ ns(coordinate, df = 3)` fitted within the diagnostic cohort; subtype effects from the same spline plus 17 subtypes with sum-to-zero contrasts, HC3 robust tests and Benjamini–Hochberg correction.
+- Figure 7 reports same-cohort leave-one-subtype-out fitting, three leave-one-marker-out scores, an expanded score, repeated subtype-stratified five-fold model comparison, and fixed BCL11B comparisons. These checks do not constitute independent replication of the complete 17-subtype ranking. HiChIP is supplementary and exploratory.
 - Single-cell comparisons are made on patient-level pseudobulks, not on cells.
 
 ## Contact

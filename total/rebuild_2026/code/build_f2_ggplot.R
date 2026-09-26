@@ -1,6 +1,6 @@
 # Figure 2: frozen 1,309-patient subtype configurations and phenotype mapping.
 suppressPackageStartupMessages({
-  library(ggplot2); library(patchwork); library(ggalluvial); library(ragg)
+  library(ggplot2); library(patchwork); library(ragg)
 })
 argv <- grep("^--file=", commandArgs(FALSE), value = TRUE)
 script <- normalizePath(sub("^--file=", "", argv), winslash = "/")
@@ -49,17 +49,17 @@ sub_palette <- c(
  "TME-enriched" = "#477f9e", "NUP98" = "#8498aa", "MLLT10" = "#5a9a9a",
  "ETP-like" = teal, "HOXA9 TCR" = "#8a9b77", "STAG2&LMO2" = "#b0a279",
  "TLX1" = "#b97b65", "KMT2A" = "#6d8799", "NKX2-5" = "#95a3a7",
- "TAL1 alpha-beta-like" = "#bd777b", "NKX2-1" = "#927d7d",
- "TAL1 DP-like" = "#c5626e", "NUP214" = "#929c87", "TLX3" = gold)
+ "TAL1 alpha-beta-like" = "#b45e42", "NKX2-1" = "#927d7d",
+ "TAL1 DP-like" = "#d4743e", "NUP214" = "#929c87", "TLX3" = gold)
 stopifnot(all(unique(patients$label) %in% names(sub_palette)))
-theme_pub <- theme_classic(base_family = font, base_size = 11.5) +
-  theme(plot.title = element_text(colour = ink, face = "bold", size = 12.8,
+theme_pub <- theme_classic(base_family = font, base_size = 8) +
+  theme(plot.title = element_text(colour = ink, face = "bold", size = 9,
                                   margin = margin(b = 5)),
-        plot.subtitle = element_text(colour = ink, size = 9.5),
-        plot.caption = element_text(colour = ink, size = 9),
-        axis.title = element_text(colour = ink, size = 10.2),
-        axis.text = element_text(colour = ink, size = 9.3),
-        legend.text = element_text(colour = ink, size = 9),
+        plot.subtitle = element_text(colour = ink, size = 7.5),
+        plot.caption = element_text(colour = ink, size = 7),
+        axis.title = element_text(colour = ink, size = 8),
+        axis.text = element_text(colour = ink, size = 7.4),
+        legend.text = element_text(colour = ink, size = 7.2),
         plot.margin = margin(5, 5, 5, 5),
         panel.grid.major.y = element_line(colour = "#e8edef", linewidth = .3))
 
@@ -70,34 +70,32 @@ ip$ip_label <- factor(ip$ip_label,
   levels = c("DP-like IP", "ETP-like IP", "Myeloid-like IP",
              "alpha-beta-like IP", "Other / unknown IP"))
 stopifnot(!anyNA(ip$ip_label))
-# Adapted from D:/_bioinformation/code1/27桑基图/bioR27.ggalluvial.R:
-# its to_lodes_form grammar is applied to
-# frozen patient counts. The tutorial's setwd, sample data and palette are
-# deliberately replaced by project provenance and the manuscript palette.
-ip$flow_id <- seq_len(nrow(ip))
-lodes <- ggalluvial::to_lodes_form(
-  ip[, c('ip_label', 'label', 'N', 'flow_id')], axes = 1:2,
-  id = 'flow_id', key = 'axis', value = 'stratum')
-lodes$flow_subtype <- ip$label[match(lodes$flow_id, ip$flow_id)]
-pA <- ggplot(lodes, aes(x = axis, stratum = stratum,
-                       alluvium = flow_id, y = N)) +
-  geom_alluvium(aes(fill = flow_subtype), width = .09, alpha = .54,
-                colour = NA, knot.pos = .38) +
-  geom_stratum(width = .09, fill = '#ffffff', colour = '#708c99', linewidth = .48) +
-  geom_text(stat = "stratum", aes(label = after_stat(ifelse(
-                       (x == 1 & ymax - ymin >= 250) |
-                       (x == 2 & ymax - ymin >= 100),
-                       as.character(stratum), ""))), size = 2.9,
+# A count matrix is legible at final print size and preserves the 47 observed
+# transitions. At 17 target subtypes the previous alluvial hid target labels.
+ip_grid <- expand.grid(label = sub_order,
+                       ip_label = levels(ip$ip_label), stringsAsFactors = FALSE)
+ip_grid <- merge(ip_grid, ip[, c("label", "ip_label", "N")],
+                 by = c("label", "ip_label"), all.x = TRUE, sort = FALSE)
+ip_grid$N[is.na(ip_grid$N)] <- 0L
+ip_grid$total <- sub$n[match(as.character(ip_grid$label), as.character(sub$label))]
+ip_grid$fraction <- ip_grid$N / ip_grid$total
+ip_grid$label <- factor(ip_grid$label, levels = rev(sub_order))
+ip_grid$ip_label <- factor(ip_grid$ip_label, levels = levels(ip$ip_label),
+  labels = c("DP", "ETP", "Myeloid", "alpha-beta", "Other"))
+stopifnot(sum(ip_grid$N) == 1309L, sum(ip_grid$N > 0) == 47L)
+pA <- ggplot(ip_grid, aes(ip_label, label, fill = fraction)) +
+  geom_tile(colour = "#ffffff", linewidth = .35) +
+  geom_text(aes(label = ifelse(N > 0, N, "")), size = 2.05,
             colour = ink, family = font) +
-  scale_fill_manual(values = sub_palette, guide = "none") +
-  scale_x_discrete(limits = c('ip_label','label'),
-                   labels = c('Immunophenotype','Molecular subtype'),
-                   expand = c(.18, .12)) +
-  labs(title = "A  Immunophenotypes distribute across molecular subtypes",
-       subtitle = "Observed patient counts; all 47 nonzero flows retained",
-       x = NULL, y = "Patients") +
-  theme_pub + theme(axis.line.x = element_blank(), axis.ticks.x = element_blank(),
-                    panel.grid = element_blank())
+  scale_fill_gradientn(colours = c("#f3f7f8", "#b9d7d7", "#5ba3a2", "#1a6c78"),
+                       limits = c(0, 1), guide = "none") +
+  labs(title = "A  Phenotype counts",
+       subtitle = "47 nonzero cells / n printed",
+       x = NULL, y = NULL) +
+  theme_pub + theme(panel.grid = element_blank(), axis.line = element_blank(),
+                    axis.ticks = element_blank(),
+                    axis.text.x = element_text(angle = 35, hjust = 1, size = 6.8),
+                    axis.text.y = element_text(size = 6.9, colour = ink))
 
 heat <- land[, c("metric", "label", "median")]
 heat$metric <- ifelse(heat$metric == "balance", "Balance", heat$metric)
@@ -108,20 +106,30 @@ heat$z <- ave(heat$median, heat$metric, FUN = function(x) as.numeric(scale(x)))
 heat$label <- factor(heat$label, levels = rev(sub_order))
 heat$metric <- factor(heat$metric,
   levels = c("ZEB1", "ZEB2", "LMO2", "Balance", "Development"))
+heat_ann <- data.frame(label = factor(sub$label, levels = rev(sub_order)),
+                       n = sub$n)
+stopifnot(sum(heat_ann$n) == 1309L, nrow(heat_ann) == 17L)
 pB <- ggplot(heat, aes(metric, label, fill = z)) +
-  geom_tile(colour = "white", linewidth = .75) +
-  scale_fill_gradient2(low = "#5482a2", mid = "#f7f8f5", high = "#bf6170",
-                       midpoint = 0, limits = c(-2.5, 2.5),
+  geom_tile(colour = "#e4e9e9", linewidth = .28) +
+  geom_text(data = heat_ann, aes(x = 5.65, y = label, label = n),
+            inherit.aes = FALSE, colour = ink, size = 2.55,
+            family = font) +
+  scale_fill_gradientn(colours = c("#315f82", "#a7c0ce", "#f6f3ec",
+                                     "#e4a47d", "#b84922"),
+                       values = scales::rescale(c(-2, -1, 0, 1, 2)),
+                       limits = c(-2, 2),
                        oob = scales::squish, name = "Across-subtype z") +
-  labs(title = "B  Configuration matrix",
-       subtitle = "Subtype medians, z-scored per metric",
+  labs(title = "B  Expression matrix",
+       subtitle = "Subtype medians; right: n",
        x = NULL, y = NULL, fill = "z") +
   theme_pub + theme(panel.grid = element_blank(), axis.line = element_blank(),
                     axis.ticks = element_blank(),
-                    axis.text.x = element_text(angle = 30, hjust = 1, size = 9.2),
-                    axis.text.y = element_text(size = 9.2, colour = ink),
+                    axis.text.x = element_text(angle = 30, hjust = 1, size = 7.4),
+                    axis.text.y = element_blank(),
+                    axis.ticks.y = element_blank(),
                     legend.position = "right", legend.key.width = grid::unit(7, "pt"),
-                    legend.key.height = grid::unit(22, "pt"))
+                    legend.key.height = grid::unit(22, "pt")) +
+  scale_x_discrete(expand = expansion(add = c(.45, 1.10)))
 
 patients$label <- factor(patients$label, levels = rev(sub_order))
 q <- do.call(rbind, lapply(split(patients, patients$label), function(d) {
@@ -136,13 +144,13 @@ pC <- ggplot(patients, aes(balance, label)) +
   geom_point(position = position_jitter(height = .15, width = 0),
              colour = "#667f8b", alpha = .32, size = .5) +
   geom_segment(data = q, aes(x = q25, xend = q75, y = label, yend = label),
-               inherit.aes = FALSE, colour = ink, linewidth = 2.6, alpha = .84) +
+               inherit.aes = FALSE, colour = ink, linewidth = 1.15, alpha = .84) +
   geom_point(data = q, aes(x = median, y = label), inherit.aes = FALSE,
              shape = 18, size = 2.5, colour = purple) +
-  labs(title = "C  Balance by subtype",
-       subtitle = "Dots, patients; bar, IQR; diamond, median",
+  labs(title = "C  ZEB balance",
+       subtitle = "1,309 patients",
        x = "z(ZEB1) - z(ZEB2)", y = NULL) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink))
+  theme_pub + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 patients$key <- ifelse(patients$label %in% c("BCL11B", "ETP-like", "TLX3"),
                        as.character(patients$label), "Other")
@@ -156,8 +164,8 @@ pD <- ggplot(patients, aes(z_ZEB1, z_ZEB2)) +
                                  "TLX3" = gold)) +
   coord_equal() +
   labs(title = "E  ZEB1 versus ZEB2",
-       subtitle = "One point per patient; equality dashed",
-       x = "ZEB1, within-cohort z-score", y = "ZEB2, within-cohort z-score",
+       subtitle = "Patients; within-cohort z-scores",
+       x = "ZEB1 z-score", y = "ZEB2 z-score",
        colour = NULL) +
   theme_pub + theme(legend.position = "bottom", legend.key.width = grid::unit(9, "pt"))
 
@@ -172,8 +180,8 @@ pE <- ggplot(dev, aes(dev_median, label)) +
   geom_point(aes(colour = highlight), size = 2.3) +
   scale_colour_manual(values = c("BCL11B" = purple, "ETP-like" = teal,
                                  "TLX3" = gold, "Other" = "#869fa9"), guide = "none") +
-  labs(title = "D  Development",
-       subtitle = "Median coordinate",
+  labs(title = "D  Coordinate",
+       subtitle = "Subtype medians",
        x = "Three-gene coordinate", y = NULL) +
   theme_pub + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
                     panel.grid.major.y = element_line(colour = "#e8edef", linewidth = .3))
@@ -187,25 +195,31 @@ model <- data.frame(label = c("Immunophenotype", "Development", "Molecular subty
                            vp$r_squared[grepl("subtype", vp$model) & grepl("ns\\(dev", vp$model)]))
 stopifnot(nrow(model) == 4L, all(is.finite(model$r2)))
 model$label <- factor(model$label, levels = rev(model$label))
+model$fill <- as.character(model$label)
 pF <- ggplot(model, aes(r2, label)) +
-  geom_segment(aes(x = 0, xend = r2, yend = label), colour = "#bfd0d5", linewidth = .9) +
-  geom_point(colour = purple, size = 3.0) +
-  geom_text(aes(label = sprintf("%.2f", r2)), hjust = -.3, colour = ink,
-            size = 3.3, family = font) +
-  scale_x_continuous(limits = c(0, .5), breaks = c(0, .2, .4)) +
-  labs(title = "F  Variance explained",
-       subtitle = "Subtype adds \u0394R\u00b2 = 0.14 after development",
-       x = expression("Explained variance ("*R^2*")"), y = NULL) +
-  theme_pub
+  geom_col(aes(fill = fill), width = .58, show.legend = FALSE) +
+  geom_text(aes(label = sprintf("%.1f%%", 100 * r2)), hjust = -.15,
+            colour = ink, size = 3.5, family = font) +
+  scale_fill_manual(values = c("Development + subtype" = purple, "Development" = teal,
+                               "Molecular subtype" = "#7a9aac", "Immunophenotype" = "#bbcbd0")) +
+  scale_x_continuous(limits = c(0, .48), breaks = c(0, .2, .4),
+                     labels = function(x) paste0(round(x * 100), "%")) +
+  labs(title = "F  Explained variance",
+       subtitle = "+13.9 points beyond development",
+       x = NULL, y = NULL) +
+  theme_pub + theme(panel.grid.major.y = element_blank(),
+                    panel.grid.major.x = element_line(colour = "#e8edef", linewidth = .3))
 
-top <- pA
-middle <- wrap_plots(pB, pC, pE, ncol = 3, widths = c(1.18, 1.4, .82))
-bottom <- wrap_plots(pD, pF, ncol = 2, widths = c(1, 1))
-full <- wrap_plots(top, middle, bottom, ncol = 1, heights = c(.8, 1.23, .82))
+row1 <- pA + pB + pC + plot_layout(widths = c(1.35, 1.25, 1.0))
+full <- row1 /
+  (pE | pD) /
+  pF +
+  plot_layout(heights = c(2.0, 1.15, .56))
 wt <- function(x, name) write.table(x, file.path(sdir, name), sep = "\t",
   quote = FALSE, row.names = FALSE, na = "NA")
 wt(ip[, c("ip", "subtype", "N")], "F2A_immunophenotype_subtype_counts.tsv")
 wt(heat[, c("metric", "label", "median", "z")], "F2B_subtype_matrix.tsv")
+wt(heat_ann, "F2B_subtype_counts.tsv")
 wt(patients[, c("sample_id", "subtype", "ZEB1", "ZEB2", "LMO2",
                   "z_ZEB1", "z_ZEB2", "balance", "dev")], "F2C-D_patients.tsv")
 wt(q, "F2C_subtype_IQR.tsv")
@@ -215,13 +229,13 @@ wt(data.frame(subtype = names(sub_palette), colour = unname(sub_palette)),
    "F2_subtype_palette.tsv")
 
 base <- file.path(out, "F2")
-ggsave(paste0(base, ".pdf"), full, width = 14.4, height = 12.6,
+ggsave(paste0(base, ".pdf"), full, width = 7.09, height = 8.15,
        units = "in", device = cairo_pdf, bg = "white", limitsize = FALSE)
-ggsave(paste0(base, ".svg"), full, width = 14.4, height = 12.6,
+ggsave(paste0(base, ".svg"), full, width = 7.09, height = 8.15,
        units = "in", device = svg, bg = "white", limitsize = FALSE)
-ggsave(paste0(base, ".png"), full, width = 14.4, height = 12.6,
+ggsave(paste0(base, ".png"), full, width = 7.09, height = 8.15,
        units = "in", device = agg_png, dpi = 300, bg = "white", limitsize = FALSE)
-ggsave(paste0(base, ".tiff"), full, width = 14.4, height = 12.6,
+ggsave(paste0(base, ".tiff"), full, width = 7.09, height = 8.15,
        units = "in", device = agg_tiff, dpi = 300, bg = "white", limitsize = FALSE)
 writeLines(capture.output(sessionInfo()), paste0(base, "_R_sessionInfo.txt"))
 manifest <- data.frame(
@@ -233,14 +247,14 @@ manifest <- data.frame(
     "polonen_round1/patient_level_frozen_balance.tsv",
     "zeb_developmental_residual/variance_partition.tsv + zeb_developmental_axis/polonen_balance_variance.tsv"),
   displayed_data = c("F2A_immunophenotype_subtype_counts.tsv",
-    "F2B_subtype_matrix.tsv", "F2C-D_patients.tsv + F2C_subtype_IQR.tsv",
+    "F2B_subtype_matrix.tsv + F2B_subtype_counts.tsv", "F2C-D_patients.tsv + F2C_subtype_IQR.tsv",
     "F2D_developmental_medians.tsv", "F2C-D_patients.tsv", "F2F_model_variance.tsv"),
-  display_transform = c("47 frozen counts via code1 to_lodes_form grammar; left labels >=250, right labels >=100",
-    "Frozen metric medians standardized across subtypes for heatmap colour",
+  display_transform = c("47 frozen nonzero phenotype-by-subtype counts in a 17x5 matrix; shade is within-subtype fraction; zero cells remain blank",
+    "Frozen metric medians standardized across subtypes; colour display capped at z +/-2; frozen subtype n printed at right",
     "All 1309 raw balances; display-only quartiles and medians",
     "Frozen subtype median developmental coordinate, aligned to B-C order",
     "All 1309 within-cohort z(ZEB1), z(ZEB2) pairs; three subtypes highlighted",
-    "Frozen R2 models shown as lollipops"),
+    "Frozen R2 models shown as direct-labelled bars"),
   script = "total/rebuild_2026/code/build_f2_ggplot.R")
 write.table(manifest, paste0(base, "_panel_manifest.tsv"), sep = "\t",
             quote = FALSE, row.names = FALSE)

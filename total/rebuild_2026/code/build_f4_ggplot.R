@@ -22,15 +22,15 @@ stopifnot(nrow(sub) == 17L, nrow(pol) == 18L, nrow(cases) == 12L)
 ink <- "#152b39"; purple <- "#776298"; blue <- "#246b96"
 teal <- "#168b82"; gold <- "#c28830"; zeb1 <- "#bc3446"
 zeb2 <- blue; font <- "Arial"
-theme_pub <- theme_classic(base_family = font, base_size = 11.5) +
-  theme(plot.title = element_text(colour = ink, face = "bold", size = 12.8,
+theme_pub <- theme_classic(base_family = font, base_size = 8) +
+  theme(plot.title = element_text(colour = ink, face = "bold", size = 9,
                                   margin = margin(b = 5)),
-        plot.subtitle = element_text(colour = ink, size = 9.5),
-        plot.caption = element_text(colour = ink, size = 9),
-        axis.title = element_text(colour = ink, size = 10.2),
-        axis.text = element_text(colour = ink, size = 9.3),
-        legend.title = element_text(colour = ink, size = 9.2),
-        legend.text = element_text(colour = ink, size = 9.1),
+        plot.subtitle = element_text(colour = ink, size = 7.5),
+        plot.caption = element_text(colour = ink, size = 7),
+        axis.title = element_text(colour = ink, size = 8),
+        axis.text = element_text(colour = ink, size = 7.4),
+        legend.title = element_text(colour = ink, size = 7.3),
+        legend.text = element_text(colour = ink, size = 7.2),
         plot.margin = margin(5, 5, 5, 5),
         panel.grid.major.y = element_line(colour = "#e7eef0", linewidth = .3))
 fix_label <- function(x) {
@@ -53,10 +53,12 @@ pA <- ggplot(sub, aes(residual_within_median, label)) +
             aes(label = sprintf("%.2f  /  n=%d", residual_within_median, n)),
             hjust = -.15, colour = purple, size = 3.2, fontface = "bold", family = font) +
   scale_colour_manual(values = c(BCL11B = purple, Other = "#8fa7b0"), guide = "none") +
-  labs(title = "A  BCL11B at the negative residual extreme",
-       subtitle = "Primary within-cohort developmental adjustment / 17 subtypes",
+  scale_y_discrete(labels = function(x) ifelse(x %in%
+                     c("BCL11B", "ETP-like", "TLX3"), x, "")) +
+  labs(title = "A  BCL11B residual extreme",
+       subtitle = "Within-cohort adjustment; 17 subtypes",
        x = "Within-cohort residual", y = NULL) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink))
+  theme_pub + theme(axis.text.y = element_text(size = 7.3, colour = ink))
 
 pol$case_no <- seq_len(nrow(pol))
 paired <- rbind(
@@ -67,8 +69,8 @@ pB <- ggplot(paired, aes(gene, value, group = sample_id)) +
   geom_line(colour = "#aabcc3", linewidth = .55) +
   geom_point(aes(colour = gene), size = 2.5) +
   scale_colour_manual(values = c(ZEB1 = zeb1, ZEB2 = zeb2), guide = "none") +
-  labs(title = "B  Paired ZEB1/ZEB2 in BCL11B subtype",
-       subtitle = "18 diagnostic BCL11B subtype samples / TMM log2 CPM",
+  labs(title = "B  Paired ZEB expression",
+       subtitle = "18 BCL11B subtype samples; TMM log2 CPM",
        x = NULL, y = "Expression") +
   theme_pub + theme(panel.grid.major.y = element_line(colour = "#e5ecee", linewidth = .3))
 
@@ -81,21 +83,36 @@ lesion_cols <- c("ZEB2 fusion" = blue, "ARID1B enhancer" = teal,
 cases$phenotype_class <- ifelse(grepl("ETP-ALL", cases$phenotype), "ETP-ALL",
   ifelse(grepl("MPAL", cases$phenotype), "MPAL",
   ifelse(grepl("AML", cases$phenotype), "AML", "Unspecified")))
-cases$label <- paste(cases$case, cases$phenotype_class, sep = "  /  ")
-cases <- cases[order(cases$lesion, cases$log2_ZEB1_over_ZEB2), ]
-cases$label <- factor(cases$label, levels = rev(cases$label))
-pC <- ggplot(cases, aes(log2_ZEB1_over_ZEB2, label, colour = lesion)) +
-  geom_vline(xintercept = 0, colour = ink, linewidth = .85) +
-  geom_segment(aes(x = log2_ZEB1_over_ZEB2, xend = 0, yend = label),
-               linewidth = .7, alpha = .5) +
-  geom_point(size = 3.0) +
-  scale_colour_manual(values = lesion_cols, guide = guide_legend(nrow = 1)) +
-  scale_x_continuous(limits = c(-5.6, .5), breaks = -5:0) +
-  labs(title = "C  12/12 BCL11B-R cases are ZEB2-dominant",
-       subtitle = "GSE162280 / 12 cases / log2(ZEB1 CPM / ZEB2 CPM)",
-       x = "log2(ZEB1 / ZEB2)", y = NULL, colour = NULL) +
-  theme_pub + theme(legend.position = "bottom", legend.key.width = grid::unit(9, "pt"),
-                    axis.text.y = element_text(size = 9.5, colour = ink))
+cases <- cases[order(cases$table_no), ]
+cases$case <- factor(cases$case, levels = rev(cases$case))
+case_expr <- rbind(
+  data.frame(case = cases$case, gene = "ZEB1", cpm = cases$ZEB1_cpm),
+  data.frame(case = cases$case, gene = "ZEB2", cpm = cases$ZEB2_cpm))
+case_expr$gene <- factor(case_expr$gene, levels = c("ZEB1", "ZEB2"))
+case_labels <- setNames(paste0(as.character(cases$case), "  |  ",
+                               cases$phenotype_class), as.character(cases$case))
+pC <- ggplot(cases, aes(y = case)) +
+  geom_vline(xintercept = c(10, 100), colour = "#eef2f3", linewidth = .3) +
+  geom_segment(aes(x = ZEB1_cpm, xend = ZEB2_cpm, yend = case),
+               colour = "#a5b7be", linewidth = .75) +
+  geom_point(data = case_expr, aes(x = cpm, colour = gene), size = 2.35) +
+  geom_point(aes(x = 9, shape = lesion), colour = ink, size = 2.0) +
+  geom_text(aes(x = 680, label = sprintf("%.2f", log2_ZEB1_over_ZEB2)),
+            colour = ink, size = 2.65, fontface = "bold", family = font) +
+  scale_colour_manual(values = c(ZEB1 = zeb1, ZEB2 = zeb2), name = NULL) +
+  scale_shape_manual(values = c("ZEB2 fusion" = 15,
+                                "ARID1B enhancer" = 16,
+                                "CDK6 enhancer" = 17), name = NULL) +
+  scale_x_log10(limits = c(8, 900), breaks = c(10, 30, 100, 300),
+                labels = c("10", "30", "100", "300")) +
+  scale_y_discrete(labels = case_labels) +
+  labs(title = "C  Case-level expression and lesion class",
+       subtitle = "12 cases; each segment connects ZEB1 and ZEB2 in one case; right label = log2 ratio",
+       x = "Expression (CPM; log scale)", y = NULL) +
+  theme_pub + theme(axis.text.y = element_text(size = 7.4, colour = ink),
+                    legend.position = "bottom", legend.box = "horizontal",
+                    legend.margin = margin(0, 0, 0, 0),
+                    legend.key.width = grid::unit(4, "mm"))
 
 mix <- as.data.frame(table(cases$lesion, cases$phenotype_class))
 names(mix) <- c("lesion", "phenotype", "n")
@@ -112,7 +129,7 @@ pD <- ggplot(mix, aes(phenotype, lesion, fill = n)) +
        x = NULL, y = NULL) +
   theme_pub + theme(panel.grid = element_blank(), axis.line = element_blank(),
                     axis.ticks = element_blank(), axis.text.x = element_text(angle = 20, hjust = 1),
-                    axis.text.y = element_text(size = 9, colour = ink),
+                    axis.text.y = element_text(size = 7.3, colour = ink),
                     legend.position = "none")
 
 rng <- groups[groups$group %in% c("ZEB2-BCL11B fusion",
@@ -130,10 +147,10 @@ pE <- ggplot(rng, aes(y = lesion)) +
             hjust = 1.25, colour = ink, size = 3.1, family = font) +
   scale_colour_manual(values = lesion_cols, guide = "none") +
   scale_x_continuous(limits = c(-6.2, .2), breaks = c(-6, -4, -2, 0)) +
-  labs(title = "E  ZEB2 partner not required",
+  labs(title = "E  ZEB2 dominance by partner",
        subtitle = "Dot, median; bar, range; label, ZEB2-dominant/n",
        x = "log2(ZEB1 / ZEB2)", y = NULL) +
-  theme_pub + theme(axis.text.y = element_text(size = 9.2, colour = ink))
+  theme_pub + theme(axis.text.y = element_text(size = 7.3, colour = ink))
 
 pol$sample_id <- factor(pol$sample_id,
   levels = pol$sample_id[order(pol$balance)])
@@ -159,13 +176,12 @@ pF <- ggplot(flag, aes(sample_id, feature)) +
        x = NULL, y = NULL) +
   theme_pub + theme(panel.grid = element_blank(), axis.line = element_blank(),
                     axis.ticks = element_blank(),
-                    axis.text.x = element_text(angle = 42, hjust = 1, size = 8.5),
-                    axis.text.y = element_text(colour = ink, size = 9.5))
+                    axis.text.x = element_text(angle = 42, hjust = 1, size = 7.2),
+                    axis.text.y = element_text(colour = ink, size = 7.3))
 
 top <- wrap_plots(pA, pB, ncol = 2, widths = c(1.3, 1))
-right <- wrap_plots(pD, pE, ncol = 1, heights = c(.95, 1.05))
-bottom <- wrap_plots(pC, right, ncol = 2, widths = c(1.25, 1))
-full <- wrap_plots(top, bottom, pF, ncol = 1, heights = c(.9, 1.15, .52))
+full <- top / pC / (pD | pE) / pF +
+  plot_layout(heights = c(.82, 1.47, .75, .58))
 
 wt <- function(x, name) write.table(x, file.path(sdir, name), sep = "\t",
   quote = FALSE, row.names = FALSE, na = "NA")
@@ -181,13 +197,13 @@ wt(pol[, c("sample_id", "balance", "arid", "tra", "myc")],
    "F4F_polonen_recorded_lesion_flags.tsv")
 
 base <- file.path(out, "F4")
-ggsave(paste0(base, ".pdf"), full, width = 14.4, height = 13.1,
+ggsave(paste0(base, ".pdf"), full, width = 7.09, height = 8.3,
        units = "in", device = cairo_pdf, bg = "white", limitsize = FALSE)
-ggsave(paste0(base, ".svg"), full, width = 14.4, height = 13.1,
+ggsave(paste0(base, ".svg"), full, width = 7.09, height = 8.3,
        units = "in", device = svg, bg = "white", limitsize = FALSE)
-ggsave(paste0(base, ".png"), full, width = 14.4, height = 13.1,
+ggsave(paste0(base, ".png"), full, width = 7.09, height = 8.3,
        units = "in", device = agg_png, dpi = 300, bg = "white", limitsize = FALSE)
-ggsave(paste0(base, ".tiff"), full, width = 14.4, height = 13.1,
+ggsave(paste0(base, ".tiff"), full, width = 7.09, height = 8.3,
        units = "in", device = agg_tiff, dpi = 300, bg = "white", limitsize = FALSE)
 writeLines(capture.output(sessionInfo()), paste0(base, "_R_sessionInfo.txt"))
 manifest <- data.frame(

@@ -108,12 +108,19 @@ def to_docx(md_text: str, target: Path, ref: Path, line_numbers: bool) -> None:
                     "--resource-path", str(SUB), "-o", str(target)], check=True)
     if line_numbers:
         add_line_numbers(target)
+    doc = Document(target)
+    for i, para in enumerate(doc.paragraphs):
+        if para._p.xpath(".//*[local-name()='oMathPara']"):
+            para.paragraph_format.keep_together = True
+            if i:
+                doc.paragraphs[i - 1].paragraph_format.keep_with_next = True
+    doc.save(target)
     print(f"  {target.relative_to(ROOT)}  ({target.stat().st_size // 1024} KB)")
 
 
 def word_counts(md: str) -> tuple[int, int]:
     abstract = md.split("## Abstract", 1)[1].split("\n## ", 1)[0]
-    body = md.split("## Introduction", 1)[1].split("## Methods", 1)[0]
+    body = md.split("## Introduction", 1)[1].split("## Data and code availability", 1)[0]
     clean = lambda s: len(re.sub(r"[#*\[\]()]", " ", s).split())
     return clean(abstract), clean(body)
 
@@ -125,7 +132,7 @@ n_abs, n_body = word_counts(main_md)
 n_refs = len(re.findall(r"^\d+\. ", main_md.split("## References", 1)[1], flags=re.M))
 counts = (f"**Word count:** abstract {n_abs}; main text (Introduction to Discussion) {n_body}.  \n"
           f"**Figures:** 7. **References:** {n_refs}. **Supplementary material:** "
-          f"7 figures and 4 tables.\n")
+          f"9 figures and 8 tables; 1 main table.\n")
 main_md = main_md.replace("\n---\n\n## Abstract", "\n" + counts + "\n---\n\n## Abstract", 1)
 
 ref = reference_docx()
@@ -142,35 +149,20 @@ to_docx(with_figs, OUT_MS / "ZEB1_ZEB2_TALL_manuscript_with_figures.docx", ref, 
 
 # ── Supplementary Information ───────────────────────────────────────────────
 si = (MS_DIR / "Supplementary_Information.md").read_text(encoding="utf-8")
-si = si.split("## Supplementary Table S1.", 1)[0].rstrip() + "\n"
-si = si.replace("Table S4", "Table S3")
-si = re.sub(r" ?Table S3 records excluded exploratory lines[^.]*\.", "", si)
-si = re.sub(r"the full-precision values, event counts and Cox warnings are in `[^`]+`",
-            "full-precision values, event counts and Cox warnings are provided in "
-            "Supplementary Table S4", si)
-si = re.sub(r"\bfrozen\s+", "", si)
-si = re.sub(r"\bFrozen\s+(\w)", lambda m: m.group(1).upper(), si)
-for i in range(1, 8):
+for i in range(1, 10):
     pat = re.compile(rf"(## Supplementary Figure S{i}\..*?\n\n.*?)(\n\n|\Z)", re.S)
-    si = pat.sub(lambda m, i=i: m.group(1) +
-                 f"\n\n![](figures/supplementary/FigureS{i}.png){{width=6.5in}}\n\n",
+    images = (
+        "\n\n".join(
+            f"![](figures/supplementary/FigureS{i}_page{page}.png){{width=6.5in}}"
+            for page in (1, 2)
+        )
+        if i <= 3 else f"![](figures/supplementary/FigureS{i}.png){{width=6.5in}}"
+    )
+    si = pat.sub(lambda m, i=i: m.group(1) + f"\n\n{images}\n\n",
                  si, count=1)
-si += """
-## Supplementary Tables
-
-Supplementary Tables S1–S4 are provided as separate sheets of the file *Supplementary_Tables_S1-S4.xlsx*.
-
-**Supplementary Table S1. Clinical models and subtype attenuation.** Six clinical endpoints with unadjusted and molecular-subtype-adjusted estimates, 95% confidence intervals, denominators, event counts, P values and Benjamini–Hochberg adjustment across endpoints within each adjustment level.
-
-**Supplementary Table S2. Datasets, biological units and evidentiary roles.** Accession, assay, biological unit, sample size and the role of each dataset in the analysis.
-
-**Supplementary Table S3. Full 17-subtype developmental residual summary.** Within-cohort residual medians with 3,000-replicate stratified patient-bootstrap 95% intervals, joint-model development-adjusted subtype effects with HC3 robust tests and Benjamini–Hochberg FDR, and the normal-stage projection sensitivity.
-
-**Supplementary Table S4. Clinical sensitivity models additionally adjusted for age, sex and white-cell count.** Firth logistic (binary endpoints) and Efron-ties Cox (survival endpoints) estimates per one-unit higher ZEB balance, with endpoint-specific complete cases and model warnings.
-"""
 si = superscripts(si)
 print("[supplementary]")
-to_docx(si, OUT_SUPP / "ZEB1_ZEB2_TALL_Supplementary_Information.docx", ref, line_numbers=False)
+to_docx(si, OUT_SUPP / "ZEB1_ZEB2_TALL_Supplementary_Information_editorial_rebuild.docx", ref, line_numbers=False)
 
 # ── Supplementary tables workbook ───────────────────────────────────────────
 wb = openpyxl.Workbook()
@@ -208,14 +200,12 @@ for name, title, path in sheets:
         width = max(len(str(c.value)) if c.value is not None else 0 for c in col[2:])
         ws.column_dimensions[col[0].column_letter].width = min(max(10, width + 2), 48)
     ws.freeze_panes = "A4"
-xlsx = OUT_SUPP / "Supplementary_Tables_S1-S4.xlsx"
+xlsx = BUILD / "Supplementary_Source_Tables_S1-S4.xlsx"
 wb.save(xlsx)
 print(f"  {xlsx.relative_to(ROOT)}")
 
 # ── Cover letter ────────────────────────────────────────────────────────────
-cover = """**Date:** [date of submission]
-
-To the Editor-in-Chief, *Haematologica*
+cover = """To the Editor-in-Chief, *Haematologica*
 
 Dear Editor,
 
@@ -227,24 +217,22 @@ We believe three findings will interest your readership:
 
 1. A ZEB-independent developmental coordinate explains 26% of ZEB1–ZEB2 balance variation in T-ALL, and molecular subtype contributes a further 14 percentage points after development (P = 7.8 × 10⁻⁴⁸). ETP-like leukemia, despite its low raw balance, lies close to its developmental expectation, whereas BCL11B, SPI1 and LMO2 γδ-like subtypes deviate strongly.
 2. All 12 BCL11B-rearranged leukemias in a lesion-defined series converge on ZEB2-dominant expression, including seven cases in which ZEB2 is not the rearrangement partner.
-3. Unadjusted clinical associations of ZEB balance with induction failure and minimal residual disease largely attenuate after molecular-subtype adjustment, indicating that subtype composition, rather than ZEB expression itself, carries most of the apparent prognostic signal.
+3. Unadjusted clinical associations of ZEB balance with induction failure and minimal residual disease largely attenuate after molecular-subtype adjustment. We do not claim independent clinical utility.
 
-The within-cohort developmental adjustment we describe separates inherited developmental position from subtype-associated reconfiguration without requiring cross-platform normalization, and is applicable to other lineage-associated expression programs in hematologic malignancies.
+The within-cohort developmental-expression adjustment distinguishes a measured expression proxy from subtype-associated balance differences without requiring cross-platform residual calibration. Cross-fitted and alternative-score analyses assess the robustness of the central contrast within the diagnostic cohort.
 
-This manuscript has not been published and is not under consideration elsewhere. All authors have read and approved the submission and declare no competing interests. The study used only publicly available, de-identified data. Analysis code is available at https://github.com/JDjust/ZEB1-TALL-analysis.
-
-Suggested reviewers: [name, institution, e-mail — three experts in T-ALL genomics or human thymopoiesis, without recent collaboration with the authors].
+The study used publicly available, de-identified data. Earlier analysis code is public at https://github.com/JDjust/ZEB1-TALL-analysis; revision-specific scripts are prepared for deposit there before submission. AI assistance with text and data visualization is disclosed on the title page.
 
 Thank you for considering our work.
 
 Sincerely,
 
-Chao Wu, on behalf of all authors  
-Department of Pulmonary Oncology, Tianjin Medical University Cancer Institute & Hospital, Tianjin, China  
+Chao Wu, on behalf of all authors
+Department of Pulmonary Oncology, Tianjin Medical University Cancer Institute & Hospital, Tianjin, China
 chaowutjmuch@163.com
 
-Limei Li  
-Department of Hematology, The Second Affiliated Hospital of Hainan Medical University, Haikou, China  
+Limei Li
+Department of Hematology, The Second Affiliated Hospital of Hainan Medical University, Haikou, China
 lilimei116@126.com
 """
 print("[cover letter]")
