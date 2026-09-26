@@ -1,0 +1,3 @@
+endpoint	n	events	method	lambda_min	lambda_1se	balance_HR	bootstrap_CI_low	bootstrap_CI_high	bootstrap_success	bootstrap_replicates	bootstrap_fraction_HR_below_1
+efs	1306	217	ridge Cox (Breslow ties); subtype dummies penalized only	0.0301493511544453	42.7359262904337	0.874388295856818	0.794110383923963	0.977426990266369	499	500	0.981963927855711
+os	1306	140	ridge Cox (Breslow ties); subtype dummies penalized only	0.0390777765429515	41.9018188960508	0.847472546568026	0.725103349220562	0.99268322563924	499	500	0.977955911823647

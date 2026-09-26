@@ -1,8 +1,9 @@
 {
-  "files": 253,
+  "files": 257,
   "sha256": {
     ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
     ".gitignore": "c0a6595246d6f5514483ea4cbbe87ea20fab7730ae70b983368c7302d0316079",
+    "README.md": "2d4bf0a0940605ff98410cb673baca5899e19a68c1b35db857a8275893c44ad6",
     "modules/module1/code/00_check_py_r.sh": "fbe0ca619ea6f7b6210ec6ba1a1f9270457217f6caab5348d53d0ca0c92466a9",
     "modules/module1/code/00_check_r_pkgs.R": "123cc90101ff24c194ae6cca1608697e4ef9b94c353625eeb7d7d798d74c0ecd",
     "modules/module1/code/00_dump_clinical.R": "2e9199f50831260f4aed8c011bac480783e5cfa19ed95af14af7b71e353f36d5",
@@ -100,7 +101,6 @@
     "modules/module9/code/03_volcano_from_tables.R": "5c4ac90eb1ac58fa40363fdefe9484db90b9455ac32c0d9216f03d79da3cfb3b",
     "modules/module9/code/04_rebuild_qc_figures.py": "2060cc39bf33fd584ba41a07e4038e4b675f649c6fe0b5177ebad90b3f9fc348",
     "modules/module9/code/run_module9.sh": "f21a88055097f473710c1946b295fd0e8347a71c53773aad2207a2b1b1638c79",
-    "README.md": "225a1c4ef84680200110f8e932eec905d0d9037fc391f0f7d0274c787a2998ab",
     "total/code/_launch_fig467F.py": "35840811e131be82a824456838793b6bb52e5b6d01e1b197488fa466bf3a27c6",
     "total/code/_style.py": "ddc6192fdcd6f77c5296109c1835320a567f705f5aafed6c79b54600f6cd455d",
     "total/code/audit_delivery_consistency.py": "dea38aaad6e6a53ce37e4e9acbb5b9d1b26e077b49566485aad3c94e92e3eaf5",
@@ -205,10 +205,12 @@
     "total/rebuild_2026/code/build_f6_gateA.R": "be10f87e8dc0f33461ccf3d78b1a1a458908cfa2df4c1d39bbd3699db6d6514d",
     "total/rebuild_2026/code/build_f6_ggplot.R": "6904f6b316294a29008cb7d5cc61daa12e7e8df0e3d36fdc8b0f5f6d4002226a",
     "total/rebuild_2026/code/build_f7_revision3.R": "deabd50130a9b9926df9ff7ff0f2b9d7762f60d1c4d1cb56786849fee85cae5c",
+    "total/rebuild_2026/code/build_four_journal_packages.py": "ed06e5b4ee9a7805e3f6cacdbd7bfb3b61adc966d569028e8e1efd8e8db55340",
     "total/rebuild_2026/code/build_main_validation_relayout.R": "44d51a51ed2ac8efe41b3292d6bfed88cc94c9f67feeb15f7c6eae2bbff10108",
     "total/rebuild_2026/code/build_manuscript_pdf.py": "73420f51840e64e1ff050db197136cd54cb400c62a1b1ea0de3b88e2ef70c16e",
     "total/rebuild_2026/code/build_reader_tables.py": "fb01e505055af21aba0e03ca3f4ab09fc18aebbf32d7f1379a40fe249679bf16",
     "total/rebuild_2026/code/build_references_verified.py": "f845c77df91280b27cd0613ffa44458660d430dad67ca378ac2c1582d4c88a69",
+    "total/rebuild_2026/code/build_revision4_supplementary_figures.R": "63179084df622e2f6336dac5abc866b0ff2f821aa37584a8f757e1acf2a3f3ef",
     "total/rebuild_2026/code/build_s10_ggplot.R": "cf681d6dc3ce3c015c94496f5150a54cf1250d3834f593808d3b3f770fb34403",
     "total/rebuild_2026/code/build_s11_ggplot.R": "4651f2e83f9966f0b8f7c2ab43655198a659099075e3e38c3c1b20b2efc6a7f6",
     "total/rebuild_2026/code/build_s12_ggplot.R": "1cec183264c3c33668f56cbe1b2dc18bdd12fa03af5d27a20fac957da101237d",
@@ -252,6 +254,8 @@
     "total/rebuild_2026/code/revision3_reviewer_robustness.R": "c56c7b964cfe15d23900bd7c5afb7413da469446998e618447d842ce8b063bb1",
     "total/rebuild_2026/code/revision3_update_manuscript.py": "ccd8cf8fddabc779a234ec34b339cf9542968f0a9f14535e377ea036d4e3b6fd",
     "total/rebuild_2026/code/revision3_update_supplement.py": "800c847aa6564da93523ef74b9708fcfdf9276b663b1012b2270e5f340daa2d8",
+    "total/rebuild_2026/code/revision4_matched_program.R": "1c8a153730e6c958f64316b251d87efc0dd70c5d15256a3c48835402bb0edf4f",
+    "total/rebuild_2026/code/revision4_targeted_sensitivity.R": "bdebbec31ef4522ed23a4f8acb8354c9515645b0f6d79fc83500fa9a7031faf5",
     "total/rebuild_2026/code/theme_nature.R": "d88ee600f07b8a88eda69f7705dff383e6309aaac500f37520053eda6f6d7ab2",
     "total/rebuild_2026/code/verify_delivery_manifest.py": "a73cb1378f179d1dcc8bffcf198d4f605219eefe29da3f4a96aa0f1ac015e948"
   }
