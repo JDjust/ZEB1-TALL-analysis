@@ -107,7 +107,7 @@ lines += ["","## Required author checks","",
           "- Confirm author order, affiliations, contributions, funding, ethics and competing-interest wording.",
           "- Complete AI tool versions, access dates and human-verification details on the title page.",
           "- Review each reference in context; the title/DOI manifest checks identity only.",
-          "- The public GitHub repository returned HTTP 200 and private=false on 2026-09-26; confirm the uploaded code is synchronized with this rebuild.",
+          "- The public GitHub repository was synchronized with this rebuild on 2026-09-26; confirm the public files remain accessible before upload.",
           "- Independently review the target journal's live author guidelines before upload."]
 OUT.parent.mkdir(parents=True,exist_ok=True)
 OUT.write_text("\n".join(lines)+"\n",encoding="utf-8")

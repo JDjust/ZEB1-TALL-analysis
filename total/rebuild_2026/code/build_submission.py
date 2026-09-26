@@ -221,7 +221,7 @@ We believe three findings will interest your readership:
 
 The within-cohort developmental-expression adjustment distinguishes a measured expression proxy from subtype-associated balance differences without requiring cross-platform residual calibration. Cross-fitted and alternative-score analyses assess the robustness of the central contrast within the diagnostic cohort.
 
-The study used publicly available, de-identified data. Earlier analysis code is public at https://github.com/JDjust/ZEB1-TALL-analysis; revision-specific scripts are prepared for deposit there before submission. AI assistance with text and data visualization is disclosed on the title page.
+The study used publicly available, de-identified data. The final analysis and figure code, the submitted supplementary table workbook, and aggregate robustness source summaries are public at https://github.com/JDjust/ZEB1-TALL-analysis. AI assistance with text, analysis-code preparation and data visualization is disclosed on the title page.
 
 Thank you for considering our work.
 
