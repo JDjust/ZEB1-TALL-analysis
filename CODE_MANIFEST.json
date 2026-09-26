@@ -3,7 +3,7 @@
   "sha256": {
     ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
     ".gitignore": "c0a6595246d6f5514483ea4cbbe87ea20fab7730ae70b983368c7302d0316079",
-    "README.md": "2d4bf0a0940605ff98410cb673baca5899e19a68c1b35db857a8275893c44ad6",
+    "README.md": "70599d70a2f926929b5505d632e9183340f6408312c13da105ffe36c927f9579",
     "modules/module1/code/00_check_py_r.sh": "fbe0ca619ea6f7b6210ec6ba1a1f9270457217f6caab5348d53d0ca0c92466a9",
     "modules/module1/code/00_check_r_pkgs.R": "123cc90101ff24c194ae6cca1608697e4ef9b94c353625eeb7d7d798d74c0ecd",
     "modules/module1/code/00_dump_clinical.R": "2e9199f50831260f4aed8c011bac480783e5cfa19ed95af14af7b71e353f36d5",
@@ -205,7 +205,7 @@
     "total/rebuild_2026/code/build_f6_gateA.R": "be10f87e8dc0f33461ccf3d78b1a1a458908cfa2df4c1d39bbd3699db6d6514d",
     "total/rebuild_2026/code/build_f6_ggplot.R": "6904f6b316294a29008cb7d5cc61daa12e7e8df0e3d36fdc8b0f5f6d4002226a",
     "total/rebuild_2026/code/build_f7_revision3.R": "deabd50130a9b9926df9ff7ff0f2b9d7762f60d1c4d1cb56786849fee85cae5c",
-    "total/rebuild_2026/code/build_four_journal_packages.py": "ed06e5b4ee9a7805e3f6cacdbd7bfb3b61adc966d569028e8e1efd8e8db55340",
+    "total/rebuild_2026/code/build_four_journal_packages.py": "35c3f129c3a666c95cd81710144d79346dfb7d6f6685a980e5d8d0e8f3a85370",
     "total/rebuild_2026/code/build_main_validation_relayout.R": "44d51a51ed2ac8efe41b3292d6bfed88cc94c9f67feeb15f7c6eae2bbff10108",
     "total/rebuild_2026/code/build_manuscript_pdf.py": "73420f51840e64e1ff050db197136cd54cb400c62a1b1ea0de3b88e2ef70c16e",
     "total/rebuild_2026/code/build_reader_tables.py": "fb01e505055af21aba0e03ca3f4ab09fc18aebbf32d7f1379a40fe249679bf16",

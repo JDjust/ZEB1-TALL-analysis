@@ -5,6 +5,8 @@ Code accompanying the manuscript
 > **Subtype-associated ZEB1–ZEB2 expression patterns in T-cell acute lymphoblastic leukemia after developmental-expression adjustment**
 > Zhou Q\*, Ni Q\*, Liang F, Wang H, Liang X, Li Y, Xu H, Wu C, Li L (\*equal contribution: Zhou Q and Ni Q).
 
+The four lean journal submission packages correspond to tag `v1.0.1-submission`. The numerical sensitivity analyses are unchanged from `v1.0-submission`; the later tag removes duplicate document formats from the local packaging workflow.
+
 The study is a secondary analysis of public, de-identified datasets. This repository contains code and aggregate reader-facing results; no patient-level data are redistributed.
 
 ## Repository layout

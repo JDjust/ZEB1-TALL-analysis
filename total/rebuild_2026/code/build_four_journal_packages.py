@@ -74,7 +74,7 @@ def main_variant(journal):
           r'\1Exploratory clinical associations attenuated after subtype adjustment. Sparse-subtype Cox fits were unstable; ridge sensitivity regularized subtype coefficients but did not establish a transportable prognostic marker (Supplementary Fig. S8; Tables S1, S4 and S9C).\2',md,count=1)
     methods=('Spline degrees of freedom 2–4 were compared in the same patients. Normal-stage proxy summaries respected donor nesting. Survival sensitivity used ridge Cox with subtype indicators penalized and balance, age, sex and log10 white-cell count unpenalized; minimum-deviance five-fold CV selected the penalty, Breslow ties were specified, and 500 patient bootstraps provided conditional intervals. The matched program analysis used pair-blocked limma–voom and limma camera Hallmark tests [51,52]. Details are in the Supplementary Methods.\n\n')
     md=md.replace('### Reproducibility\n\n','### Targeted sensitivity analyses\n\n'+methods+'### Reproducibility\n\n',1)
-    md=md.replace('S1–S8','S1–S9').replace('version tag: submission-locked-v2-2026-09-26','version tag: v1.0-submission')
+    md=md.replace('S1–S8','S1–S9').replace('version tag: submission-locked-v2-2026-09-26','version tag: v1.0.1-submission')
     if journal in ('JCMM','British Journal of Haematology'):
         md=re.sub(r'(?s)\n---\n\n\*\*Table 1\..*?\n---\n\n(?=## Figure legends)','\n---\n\n',md,count=1)
         md=md.replace('Table 1 and Supplementary Table S2','Supplementary Table S2').replace('Table 1','Supplementary Table S2')
@@ -243,97 +243,31 @@ GUIDES={
  'British Journal of Haematology':'Author-provided limits: Original Paper ≤3,000 main words, abstract ≤200, references ≤60, ≤7 combined figures/tables. The Wiley journal page was inaccessible during build; recheck the submission portal.',
  'Scientific Reports':'Official: https://www.nature.com/srep/author-instructions/submission-guidelines. Recommended main text ≤4,500, title ≤20, abstract ≤200, legends ≤350; consult its submission checklist for mandatory limits.'}
 
-def readme(journal,md):
-    body=md.split('## Introduction',1)[1].split('## Data and code availability',1)[0]
-    display='7 figures + Table 1' if journal not in ('JCMM','British Journal of Haematology') else '7 figures; dataset table in S2'
-    return f'''# {journal} submission package
-
-Title: {TITLES[journal]}
-Abstract: {wc(ABSTRACTS[journal])} words; Introduction–Methods–Results–Discussion: approximately {wc(body)} words by build token count.
-Main display: {display}; 52 references; 11 supplementary figures; workbook Tables S1–S9.
-
-## Ready-to-read files
-
-- `Manuscript.docx`: editable article and full legends.
-- `Manuscript_with_figures.docx`: reading copy with all seven main figures embedded.
-- `Main_Article_with_Figures.pdf`: reading PDF with native vector figures.
-- `Supplementary_Information.docx` and `.pdf`: complete SI; npj Methods are moved into main.
-- `Supplementary_Tables_S1-S9.xlsx`: reader workbook; S9 contains targeted analyses.
-- `Figures/`: seven separate final-size PDF and TIFF plates.
-- `Cover_Letter.docx`: journal-specific cover-letter draft.
-- `Author_Information.xlsx`: ordered author list and affiliation mapping; unknown emails/ORCIDs are blank for author completion.
-
-## Requirements used
-
-{GUIDES[journal]}
-
-## Before submitting
-
-Confirm author approval of this journal variant, corresponding-author ORCID, funding/conflicts, and any preprint overlap. JCMM citations were verified by DOI against Crossref; confirm final author selections in the portal. Check final portal PDF conversion for formula and image pagination. Resolve the public `v1.0-submission` code tag; no Zenodo DOI is claimed until an archive is deposited.
-
-Ridge Cox bootstrap intervals condition on penalty selection, and there is no external clinical prediction validation. Matched programs are exploratory and do not identify direct ZEB targets.
-'''
-
-def author_sheet(target):
-    authors=[
-      ('Qian Zhou','1','co-first',''),('Qingyun Ni','2','co-first',''),
-      ('Fuhua Liang','3','data collection; analysis',''),
-      ('Haonan Wang','3','',''),('Xu Liang','3','',''),('Yanmin Li','4','',''),
-      ('Huixia Xu','1','',''),('Chao Wu','3','corresponding','chaowutjmuch@163.com'),
-      ('Limei Li','5; 1','corresponding','lilimei116@126.com')]
-    wb=openpyxl.Workbook();ws=wb.active;ws.title='Authors'
-    ws.append(['Order','Full name','Affiliation number(s)','Role note','Email','ORCID'])
-    for i,(name,aff,role,email) in enumerate(authors,1):ws.append([i,name,aff,role,email,''])
-    ws.freeze_panes='A2';ws.auto_filter.ref=ws.dimensions;ws.sheet_view.showGridLines=False
-    widths=[9,24,24,32,34,26]
-    for i,w in enumerate(widths,1):ws.column_dimensions[openpyxl.utils.get_column_letter(i)].width=w
-    for c in ws[1]:
-        c.font=Font(name='Arial',size=10,bold=True,color='FFFFFF')
-        c.fill=PatternFill('solid',fgColor='28495A')
-    for row in ws.iter_rows(min_row=2):
-        for c in row:c.font=Font(name='Arial',size=10)
-    aff=wb.create_sheet('Affiliations')
-    for line in MASTER.splitlines()[4:10]:
-        if line.startswith('<sup>') and 'Department' in line:aff.append([re.sub('<[^>]+>','',line)])
-    aff.column_dimensions['A'].width=140
-    wb.save(target)
-
 def build(journal):
     folder=OUT/journal;folder.mkdir(parents=True,exist_ok=True)
     scratch=folder/'_working';scratch.mkdir(exist_ok=True)
     md=main_variant(journal);si=si_variant(journal)
-    (folder/'Manuscript.md').write_text(md,encoding='utf-8')
-    (folder/'Supplementary_Information.md').write_text(si,encoding='utf-8')
-    docx(md,folder/'Manuscript.docx',scratch)
-    docx(append_figures(md,'main'),folder/'Manuscript_with_figures.docx',scratch)
-    docx(append_figures(si,'si'),folder/'Supplementary_Information.docx',scratch)
-    pdf(md,scratch/'main_text.pdf',scratch)
-    combine([scratch/'main_text.pdf']+[SUB/f'figures/main/Figure{i}.pdf' for i in range(1,8)],folder/'Main_Article_with_Figures.pdf')
+    docx(append_figures(md,'main'),folder/'Manuscript.docx',scratch)
     pdf(si,scratch/'si_text.pdf',scratch)
     workbook(folder/'Supplementary_Tables_S1-S9.xlsx')
     render_s9_table_pdf(folder/'Supplementary_Tables_S1-S9.xlsx',scratch/'s9_tables.pdf',scratch)
     combine([scratch/'si_text.pdf']+[SUB/f'figures/supplementary/FigureS{i}.pdf' for i in range(1,12)]+[SUB/'first_submission/Supplementary_Tables_S1-S8_readable.pdf',scratch/'s9_tables.pdf'],folder/'Supplementary_Information.pdf')
     figfolder=folder/'Figures';figfolder.mkdir(exist_ok=True)
     for i in range(1,8):
-        for ext in ('pdf','tiff'):shutil.copy2(SUB/f'figures/main/Figure{i}.{ext}',figfolder/f'Figure{i}.{ext}')
-    letter=cover(journal);(folder/'Cover_Letter.md').write_text(letter,encoding='utf-8')
-    docx(letter,folder/'Cover_Letter.docx',scratch)
-    author_sheet(folder/'Author_Information.xlsx')
-    (folder/'README.md').write_text(readme(journal,md),encoding='utf-8')
-    if journal=='British Journal of Haematology':
-        enquiry=f'''# Presubmission enquiry — British Journal of Haematology
-
-Dear Editors,
-
-Would an Original Paper reporting a public-data developmental-context analysis of ZEB1–ZEB2 expression across 1,309 pediatric and young-adult T-ALL patients be of interest? Its central observation is that BCL11B-associated ZEB2 skewing persists relative to developmental-score-matched ETP-like disease. We supply the abstract below.
-
-## Abstract
-
-{ABSTRACTS[journal]}
-
-Sincerely,\nChao Wu and Limei Li
-'''
-        docx(enquiry,folder/'Presubmission_Enquiry.docx',scratch)
+        shutil.copy2(SUB/f'figures/main/Figure{i}.pdf',figfolder/f'Figure{i}.pdf')
+    docx(cover(journal),folder/'Cover_Letter.docx',scratch)
+    allowed={'Manuscript.docx','Supplementary_Information.pdf','Supplementary_Tables_S1-S9.xlsx','Cover_Letter.docx','Figures'}
+    resolved_root=OUT.resolve(); resolved_folder=folder.resolve()
+    assert resolved_folder.is_relative_to(resolved_root)
+    for item in folder.iterdir():
+        assert item.resolve().is_relative_to(resolved_folder)
+        if item.name=='Figures':
+            for extra in item.iterdir():
+                if extra.suffix.lower()!='.pdf': extra.unlink()
+        elif item.name not in allowed and item.name!='_working':
+            if item.is_dir():shutil.rmtree(item)
+            else:item.unlink()
+    assert scratch.resolve().is_relative_to(resolved_folder)
     shutil.rmtree(scratch)
     print(journal,'abstract',wc(ABSTRACTS[journal]),'body',wc(md.split('## Introduction',1)[1].split('## Data and code availability',1)[0]))
 
