@@ -121,7 +121,7 @@ def references():
 def common_tail(journal):
     availability = ('Public datasets and their roles are listed by accession in Supplementary Table S1. '
         'Analysis scripts, frozen gene membership, the formatted supplementary workbook and non-identifying aggregate outputs are available at '
-        'https://github.com/JDjust/ZEB1-TALL-analysis (tag: v2.0-editorial-submission). '
+        'https://github.com/JDjust/ZEB1-TALL-analysis (tag: v2.0.1-editorial-submission). '
         'Original patient-level data retain their source access conditions.')
     contributor = MASTER.split('## Author contributions\n', 1)[1].split('## Figure legends\n', 1)[0]
     contributor = contributor.replace('## Artificial intelligence use\n\n', '## Artificial intelligence use\n\n')

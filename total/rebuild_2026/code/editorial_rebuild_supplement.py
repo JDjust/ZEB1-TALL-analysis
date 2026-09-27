@@ -231,17 +231,24 @@ def sc10():
     a.barh(y,direction*(-np.log10(x['PValue'].clip(lower=1e-300))),color=[Z1 if 'ZEB1' in q else Z2 for q in x.program]);a.set_yticks(y,x.program,fontsize=6.5);a.axvline(0,color=LIGHT,lw=.5);a.set_xlabel('Signed −log10 CAMERA P (left = Down)')
     panel(a,'A','Acute BCL11B overexpression','Frozen ZEB2-side direction not induced in CD34+ cells');grid(a,'x')
     x=read(SD/'S10/S10A-C_HiChIP_sample_contacts.tsv');x=x.drop_duplicates('sample')
-    b.scatter(x.ZEB2_over_ZEB1,x.n_contacts/1e6,c=[Z2 if 'ETP' in str(q) and 'non' not in str(q) else GREY for q in x.group],s=25)
-    b.set_xlabel('ZEB2/ZEB1 contact ratio');b.set_ylabel('Contacts (million)');panel(b,'B','Exploratory HiChIP polarity','3 ETP versus 4 non-ETP; exact two-sided P=.057');grid(b)
+    for group, color, label in [(True,Z2,'ETP'),(False,GREY,'non-ETP')]:
+        mask=x.group.astype(str).str.contains('ETP',case=False) & ~x.group.astype(str).str.contains('non',case=False)
+        t=x[mask if group else ~mask]
+        b.scatter(t.ZEB2_over_ZEB1,t.n_contacts/1e6,color=color,s=25,label=label)
+    b.set_xlabel('ZEB2/ZEB1 contact ratio');b.set_ylabel('Contacts (million)');panel(b,'B','Exploratory HiChIP polarity','3 ETP versus 4 non-ETP; exact two-sided P=.057');b.legend(frameon=False,fontsize=6.5,loc='upper right');grid(b)
     x=read(SD/'S10/S10D_scATAC_peak_sets.tsv');c.bar(np.arange(len(x)),x.ZEB2_per_10k_peaks,color=[Z2 if 'ETP' in str(q) and 'non' not in str(q) else GREY for q in x.group]);c.set_xticks(np.arange(len(x)),x['sample'],rotation=40,ha='right',fontsize=6.5);c.set_ylabel('ZEB2 peaks per 10k')
     panel(c,'C','Cross-assay negative boundary','Seven scATAC peak sets do not reproduce polarity');grid(c)
-    x=read(SD/'S6/S6A_all_endpoint_models.tsv');x=x[x.endpoint.isin(['Induction failure','MRD >=0.1%'])]
-    if len(x):
-        for i,(ep,t) in enumerate(x.groupby('endpoint')):
-            for j,r in enumerate(t.itertuples()):
-                d.scatter(r.estimate,i+j*.18,color=Z2 if j==0 else GREY,s=20)
-                d.plot([r.ci_low,r.ci_high],[i+j*.18]*2,color=Z2 if j==0 else GREY,lw=1)
-        d.set_yticks(range(len(x.endpoint.unique())),x.endpoint.unique(),fontsize=6.5)
+    x=read(SD/'S6/S6A_all_endpoint_models.tsv')
+    endpoint_order=['Induction failure','MRD >=0.1%']
+    model_order=[('Unadjusted',Z2,-.08),('Subtype-adjusted',GREY,.08)]
+    for i,ep in enumerate(endpoint_order):
+        t=x[x.endpoint==ep].set_index('adjustment')
+        for label,color,offset in model_order:
+            r=t.loc[label]
+            d.scatter(r.estimate,i+offset,color=color,s=20,label=label if i==0 else None)
+            d.plot([r.ci_low,r.ci_high],[i+offset]*2,color=color,lw=1)
+    d.set_yticks(range(len(endpoint_order)),endpoint_order,fontsize=6.5)
+    d.legend(frameon=False,fontsize=6.5,loc='center right')
     d.axvline(1,color=LIGHT,lw=.6);d.set_xlabel('OR per unit balance (95% CI)')
     panel(d,'D','Clinical attenuation','Subtype adjustment; sparse Cox warning');grid(d,'x')
     save(f,10)
