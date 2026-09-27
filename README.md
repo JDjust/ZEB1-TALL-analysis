@@ -1,83 +1,78 @@
-# ZEB1–ZEB2 axis in T-cell acute lymphoblastic leukemia — analysis and figure code
+# Developmentally contextualized ZEB1–ZEB2 states in T-ALL
 
-Code accompanying the manuscript
+Code and aggregate reader-facing outputs for the article by Zhou Q, Ni Q, Liang F, Wang H, Liang X, Li Y, Xu H, Wu C and Li L. Zhou and Ni contributed equally; Wu and Li are corresponding authors. Fuhua Liang is the third author.
 
-> **Subtype-associated ZEB1–ZEB2 expression patterns in T-cell acute lymphoblastic leukemia after developmental-expression adjustment**
-> Zhou Q\*, Ni Q\*, Liang F, Wang H, Liang X, Li Y, Xu H, Wu C, Li L (\*equal contribution: Zhou Q and Ni Q).
+The submission snapshot is `v2.0-editorial-submission`. It contains the final seven-figure and ten-supplementary-figure design. The numerical analyses come from the frozen A6/A7/A8 evidence locks; this release changes their presentation and manuscript organization, not the underlying scientific questions.
 
-The four lean journal submission packages correspond to tag `v1.0.1-submission`. The numerical sensitivity analyses are unchanged from `v1.0-submission`; the later tag removes duplicate document formats from the local packaging workflow.
+## Scientific scope
 
-The study is a secondary analysis of public, de-identified datasets. This repository contains code and aggregate reader-facing results; no patient-level data are redistributed.
+The paper tests whether molecular T-ALL subtypes have ZEB1–ZEB2-associated expression states after conditioning on a three-gene developmental-expression **proxy**. The primary shared residual is fitted within 1,309 pediatric/young-adult diagnostic patients. Frozen 50-gene programs on each residual side are compared with normal thymus, developmentally matched BCL11B and ETP-like patients, independent leukemia cohorts, normal marrow, malignant-cell pseudobulks and an adult T-ALL cohort.
 
-## Repository layout
+The analysis does **not** infer cell of origin, direct ZEB regulation, a replicated chromatin mechanism or clinical utility. No external dataset fully reproduces the 17-subtype primary ranking. Acute BCL11B overexpression opposes the observed lesion-associated state; sparse-subtype Cox estimates are not used for independent survival inference.
 
-| Path | Contents |
+## Current figure and table map
+
+| Item | Role |
 |---|---|
-| `modules/module1` … `modules/module10` | Upstream analysis modules (normal thymus references, Pölönen cohort balance and residual models, independent bulk cohorts, Lim single-cell pseudobulk, HiChIP/scATAC, clinical models). |
-| `total/code/` | Targeted validation and sensitivity analyses that produce the analysis tables used by the figures (developmental coordinate, residual models, GSE146901, GSE162280, Lim pseudobulk, chromatin summaries, clinical models). |
-| `total/rebuild_2026/code/` | Figure and manuscript pipeline for the submitted version (R/ggplot2). |
-| `supplementary_tables/` | Final reader-facing Tables S1–S9, aggregate Figure 7/Table S8 summaries, and revision-four source summaries. |
+| Figure 1 | Normal thymus stage and spatial scaffold |
+| Figure 2 | 1,309-patient subtype landscape and within-cohort residual |
+| Figure 3 | Frozen programs versus normal developmental change |
+| Figure 4 | Developmentally matched BCL11B pole and lesion-defined convergence |
+| Figure 5 | Frozen program preservation across independent leukemia contexts |
+| Figure 6 | Normal marrow affinity and passive-admixture audit |
+| Figure 7 | Adult T-ALL directional architecture and evidence boundaries |
+| Figures S1–S10 | Eligibility, sensitivity, case, assay and negative-boundary audits; one page each |
+| Tables S1–S10 | Dataset manifest, normal/stage units, subtype statistics, classifier audit, frozen genes, matched cases, external programs, marrow/specimen, malignant/adult and perturbation/chromatin/clinical audits |
 
-### Figure pipeline (`total/rebuild_2026/code/`)
+The exact panel-to-source map is [`total/rebuild_2026/PANEL_SOURCE_MAP.md`](total/rebuild_2026/PANEL_SOURCE_MAP.md). The workbook is [`supplementary_tables/Supplementary_Tables_S1-S10.xlsx`](supplementary_tables/Supplementary_Tables_S1-S10.xlsx). Each numbered table may span multiple worksheet tabs; full-precision TSVs are regenerated locally from the original sources and are not all redistributed here.
 
-| Script | Output |
+## Code layout
+
+| Path | Content |
 |---|---|
-| `theme_nature.R` | Shared journal theme, palette and export helpers. |
-| `build_f1_nature.R` | Figure 1 (normal thymopoiesis). |
-| `build_f2_ggplot.R` | Figure 2 (subtype ZEB configurations). |
-| `build_f3_revision2.R` | Figure 3 (within-cohort developmental residuals, bootstrap intervals, joint model). |
-| `build_f4_ggplot.R` | Figure 4 (BCL11B-rearranged leukemias). |
-| `build_main_validation_relayout.R`, `build_f6_gateA.R` | Figures 5–6 (independent bulk RNA and Lim patient-level pseudobulk). |
-| `revision3_reviewer_robustness.R`, `build_f7_revision3.R` | Leave-one-subtype-out residuals, alternative developmental scores, adjusted/cross-validated R², fixed and matched BCL11B contrasts, and current Figure 7. |
-| `revision4_targeted_sensitivity.R` | Fixed spline df 2/3/4, donor-aware normal-proxy summaries and ridge Cox sensitivity for sparse subtype coefficients. |
-| `revision4_matched_program.R` | Pair-blocked BCL11B versus ETP-like limma–voom and Hallmark competitive tests. |
-| `build_revision4_supplementary_figures.R` | Final Supplementary Figures S10–S11 in print-size PDF/TIFF/PNG. |
-| `build_four_journal_packages.py` | Local editorial assembly of npj Systems Biology and Applications, JCMM, British Journal of Haematology and Scientific Reports variants. |
-| `build_s3_audit.R`, `build_s8_clinical_audit.R`, `build_supplement_consolidated.R` | Supplementary Figures S1–S8; the former HiChIP main plate is retained as S9. |
-| `revision2_statistical_hardening.R` | 3,000 stratified patient bootstraps and the spline-plus-subtype joint model (seed 20260926). |
-| `revision2_clinical_sensitivity.R` | Age-, sex- and white-cell-count-adjusted clinical sensitivity (Supplementary Table S4). |
-| `finalize_journal_figures.R` | Runs current figure builders at their native print dimensions (vector PDF, 600-dpi TIFF, PNG); no second geometry or font scaling. |
-| `build_reader_tables.py`, `render_supplement_tables_pdf.py` | Reader-facing Supplementary Tables S1–S8 from full-precision derived TSVs; `build_four_journal_packages.py` adds S9. |
-| `build_submission.py`, `build_vector_preview.py` | Local manuscript and PDF assembly from the author-maintained Markdown, tables and figures. |
+| `modules/module1` … `modules/module10` | Legacy upstream dataset preparation and analyses retained for provenance |
+| `total/code/` | Primary cohort, external and sensitivity analysis scripts |
+| `total/rebuild_2026/code/` | Revision-two to revision-four models, A6/A7/A8 targeted analyses, final plate builders and submission assembly |
+| `supplementary_tables/` | Aggregate reader-facing workbook and non-identifying result summaries |
 
-## Reproducing the figures
+The current plate and package builders are:
 
-Requirements: R ≥ 4.4 with `ggplot2`, `patchwork`, `ragg`, `readr`, `ggalluvial`, `ggridges`, `ggrepel`; Python ≥ 3.10 with `pandas`, `python-docx`, `openpyxl`; `pandoc` ≥ 3.
-
-```bash
-cd total/rebuild_2026/code
-Rscript revision3_reviewer_robustness.R     # requires original 1,309-patient files
-Rscript revision4_targeted_sensitivity.R    # spline/proxy and ridge Cox sensitivity
-Rscript revision4_matched_program.R         # exploratory matched expression programs
-Rscript build_revision4_supplementary_figures.R
-Rscript finalize_journal_figures.R          # all current main and supplementary figures
-Rscript finalize_journal_figures.R F3 S2    # selected figures
-python build_reader_tables.py               # requires derived TSVs
+```text
+total/rebuild_2026/code/editorial_rebuild_figures.py
+total/rebuild_2026/code/editorial_rebuild_supplement.py
+total/rebuild_2026/code/editorial_rebuild_tables.py
+total/rebuild_2026/code/build_editorial_journal_packages.py
 ```
 
-The scripts read analysis tables under `total/data/validation/`, `total/rebuild_2026/data/source_data_rebuilt/`, `modules/module*/tables/`, and the original Pölönen count object under `data/polonen_syn54032669/`. Patient-level inputs and patient-level derived tables are not redistributed here. Obtain the source studies under their access terms and regenerate tables with the module and `total/code/` scripts. The current Figure 7 builder and robustness analysis derive the repository root from their script location. Document assembly also requires author-maintained manuscript Markdown and a local Pandoc/Chrome setup; it is not necessary to rerun the numerical analyses.
+The Python plate builders use Matplotlib at the final 180 mm physical width and preserve editable PDF text. They read frozen derived TSVs under `total/rebuild_2026/data/`, which are excluded from this repository when they contain patient-level or source-controlled data. The packaging script also reads author-maintained manuscript text and local figure files under `submission/`; it cannot run from this public repository alone. The manifest and script paths document provenance, while users must obtain the original public data under each source study's terms to regenerate patient-level intermediates.
 
-The `supplementary_tables/` directory provides the submitted S1–S9 Excel workbook, five aggregate S8 TSVs, and revision-four full-precision model and gene-set summaries. Individual-patient residuals and matched-pair identifiers remain outside this public repository. The ridge Cox bootstrap intervals condition on the selected penalty; they do not establish independent clinical prediction.
+## Reproduction sequence
 
-## Source datasets
+1. Obtain the source datasets and follow the upstream module and `total/code/` scripts to generate the patient-, donor- and gene-level derived TSVs locally.
+2. Run the frozen robustness/targeted scripts under `total/rebuild_2026/code/` (including `revision3_reviewer_robustness.R`, `revision4_targeted_sensitivity.R` and `revision4_matched_program.R`) and the A6/A7/A8 scripts documented in the panel map.
+3. Generate the final reader-facing workbook and plates with `editorial_rebuild_tables.py`, `editorial_rebuild_figures.py` and `editorial_rebuild_supplement.py`.
+4. Use `build_editorial_journal_packages.py` with the author-maintained manuscript source to assemble journal-specific Word/PDF files.
 
-| Resource | Accession / source | Role |
-|---|---|---|
-| Pölönen et al., *Nature* 2024 | St. Jude Cloud / as described in the original publication | Primary diagnostic cohort (1,309 patients, 17 molecular subtypes) |
-| Normal human thymus | GSE142522, GSE195812, GSE206710, Park et al. *Science* 2020 (Human Thymus Atlas) | Developmental reference |
-| Yang et al., *Nat Commun* 2021 | GSE146901 | Independent ETP/non-ETP bulk RNA; pooled loop calls |
-| Di Giacomo et al., *Blood* 2021 | GSE162280 | BCL11B-rearranged case series |
-| Xu et al., *Nat Cancer* 2024 | As described in the original publication | Malignant-cell pseudobulk states |
-| Gambi et al., *Mol Cell* 2025 | As described in the original publication | HiChIP and scATAC |
+These instructions describe the execution order and source dependencies. A clean-room end-to-end rerun from source archives has **not** been independently certified; readers should inspect eligibility manifests, script warnings and locked audit notes before interpreting a regenerated result.
 
-## Statistical notes
+## Public source accessions and roles
 
-- Balance is z(ZEB1) − z(ZEB2) on TMM-normalized log2 CPM. The developmental coordinate is z(CD1A) − [z(CD34) + z(LYL1)]/2 and excludes ZEB1, ZEB2 and LMO2.
-- Developmental residuals come from `balance ~ ns(coordinate, df = 3)` fitted within the diagnostic cohort; subtype effects from the same spline plus 17 subtypes with sum-to-zero contrasts, HC3 robust tests and Benjamini–Hochberg correction.
-- Figure 7 reports same-cohort leave-one-subtype-out fitting, three leave-one-marker-out scores, an expanded score, repeated subtype-stratified five-fold model comparison, and fixed BCL11B comparisons. These checks do not constitute independent replication of the complete 17-subtype ranking. HiChIP is supplementary and exploratory.
-- Fully adjusted EFS/OS Cox fits emitted sparse-subtype convergence warnings. Their estimates, P values and FDR remain in Supplementary Tables S1/S4 as audit outputs; the manuscript does not use them to infer survival associations. Supplementary Figure S8 marks these outputs separately from the binary endpoints.
-- Single-cell comparisons are made on patient-level pseudobulks, not on cells.
+| Resource | Role |
+|---|---|
+| GSE142522, GSE195812, GSE206710, Park/HTA, Yayon human thymus atlas | Normal developmental stage and spatial context |
+| Pölönen et al. diagnostic T-ALL | Primary 1,309-patient, 17-subtype discovery cohort |
+| AIEOP120 official-classifier series | Moderate external pediatric architecture audit |
+| GSE146901, GSE234608 | Independent bulk expression context |
+| GSE243914 | Blast-enriched T-ALL context |
+| GSE248287 | Source-author malignant-cell pseudobulk context |
+| GSE280250 | Author adult T-ALL series, 79 diagnostic cases |
+| GSE253355 | Normal marrow donor-by-lineage context |
+| GSE162280 | Twelve BCL11B lesion-defined cases |
+| GSE165209 | Acute BCL11B-overexpression boundary |
+| Lim single-cell resource, HiChIP, pooled loops, scATAC | Supporting patient-state and chromatin-boundary analyses |
+
+The manuscript and Table S1 specify source papers, biological units, eligibility and whether each dataset is independent, overlapping or contextual. The GSE280250 adult cohort was absent from ALLCatchR2's listed development cohorts; complete patient non-overlap has not been proven.
 
 ## Contact
 
-Chao Wu (chaowutjmuch@163.com); Limei Li (lilimei116@126.com).
+Chao Wu: chaowutjmuch@163.com. Limei Li: lilimei116@126.com.

@@ -1,0 +1,11 @@
+Package: singscore
+Title: Rank-based gene-set scoring (minimal API for ALLCatchR2)
+Version: 1.27.0
+Authors@R: person("Foroutan", "et al.", role = c("aut", "cre"), email = "local@local")
+Description: Implements rankGenes() and simpleScore() from the published
+    singscore method (Foroutan et al., BMC Bioinformatics 2018) so ALLCatchR2
+    can run when Bioconductor/GitHub are unreachable. Scoring matches the
+    official rank/(N+1) mean, centered by 0.5, TotalScore = Up - Down.
+License: GPL-3
+Depends: R (>= 4.0)
+Encoding: UTF-8
