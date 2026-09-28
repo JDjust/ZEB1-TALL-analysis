@@ -18,8 +18,8 @@ ROOT = Path(__file__).resolve().parents[3]
 SUB = ROOT / 'submission'
 BUILD = SUB / '_build' / 'editorial_rebuild'
 PACK = SUB / 'article'
-FIG = BUILD / 'figures'
-SFIG = BUILD / 'supplementary'
+FIG = SUB / 'article' / '00_Figure_Master' / 'main'
+SFIG = SUB / 'article' / '00_Figure_Master' / 'supplementary'
 TABLES = BUILD / 'Supplementary_Tables_S1-S10.xlsx'
 PANDOC = shutil.which('pandoc')
 CHROME = Path(r'C:/Program Files/Google/Chrome/Application/chrome.exe')
@@ -197,7 +197,7 @@ This Supplementary Information accompanies the seven main figures and the number
 
 ## Supplementary methods and interpretation notes
 
-Normal thymus harmonization retained each study's annotated stages and biological units. GSE195812's eight pooled libraries and GSE206710's 12 stage aggregates within three donors contribute 20 measured reference units, not 20 independent donors. The Yayon state table has 33 eligible author states and is sorted by balance in the audit; Figure 1C uses eight prespecified biologically ordered poles. Spatial CMA localization uses author cell2location state assignments in six donors. Direct ZEB2 Visium spot detection was not considered evaluable.
+Normal thymus harmonization retained each study's annotated stages and biological units. GSE195812's eight pooled libraries and GSE206710's 12 stage aggregates within three donors contribute 20 measured reference units, not 20 independent donors. Figure 1C displays all 33 eligible Yayon author states; its within-family plotting order is descriptive rather than inferred pseudotime. Spatial CMA localization uses author cell2location state assignments in six donors. Direct ZEB2 Visium spot detection was not considered evaluable.
 
 The Pölönen 1,309-patient three-gene proxy and common residual are the primary descriptive reference. Leave-one-subtype-out fits change the training population for each class and therefore assess self-influence without replacing that common baseline. The leave-one-marker-out, expanded-score and spline degrees-of-freedom 2/3/4 sensitivities were fixed comparisons. Fourteen of 18 primary BCL11B cases exceed the measured normal proxy domain; normal projection remains a biological reference, not the residual estimand. The subtype median residual and joint-model coefficient have different estimands. Cross-validated model comparisons split at patient level.
 

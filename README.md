@@ -2,7 +2,7 @@
 
 Code and aggregate reader-facing outputs for the article by Zhou Q, Ni Q, Liang F, Wang H, Liang X, Li Y, Xu H, Wu C and Li L. Zhou and Ni contributed equally; Wu and Li are corresponding authors. Fuhua Liang is the third author.
 
-The submission snapshot is `v2.0.1-editorial-submission`. It contains the final seven-figure and ten-supplementary-figure design. The numerical analyses come from the frozen A6/A7/A8 evidence locks; this release changes their presentation and manuscript organization, not the underlying scientific questions.
+The current visual-redesign snapshot is `v2.0.2-visual-redesign`. It contains the seven main and ten supplementary figure builders used for the current Word/PDF package. The numerical analyses come from the frozen A6/A7/A8 evidence locks; this release changes their presentation and manuscript organization, not the underlying scientific questions.
 
 ## Scientific scope
 
@@ -20,7 +20,7 @@ The analysis does **not** infer cell of origin, direct ZEB regulation, a replica
 | Figure 4 | Developmentally matched BCL11B pole and lesion-defined convergence |
 | Figure 5 | Frozen program preservation across independent leukemia contexts |
 | Figure 6 | Normal marrow affinity and passive-admixture audit |
-| Figure 7 | Adult T-ALL directional architecture and evidence boundaries |
+| Figure 7 | Adult T-ALL directional architecture, complete cluster context and 100-gene integration |
 | Figures S1–S10 | Eligibility, sensitivity, case, assay and negative-boundary audits; one page each |
 | Tables S1–S10 | Dataset manifest, normal/stage units, subtype statistics, classifier audit, frozen genes, matched cases, external programs, marrow/specimen, malignant/adult and perturbation/chromatin/clinical audits |
 
@@ -38,10 +38,17 @@ The exact panel-to-source map is [`total/rebuild_2026/PANEL_SOURCE_MAP.md`](tota
 The current plate and package builders are:
 
 ```text
-total/rebuild_2026/code/editorial_rebuild_figures.py
-total/rebuild_2026/code/editorial_rebuild_supplement.py
+total/rebuild_2026/code/editorial_upgrade_1.py
+total/rebuild_2026/code/editorial_upgrade_2.py
+total/rebuild_2026/code/editorial_upgrade_347.py
+total/rebuild_2026/code/editorial_upgrade_5.py
+total/rebuild_2026/code/editorial_upgrade_6.py
+total/rebuild_2026/code/editorial_upgrade_supplement.py
+total/rebuild_2026/code/editorial_upgrade_supplement_rest.py
+total/rebuild_2026/code/editorial_upgrade_10.py
 total/rebuild_2026/code/editorial_rebuild_tables.py
 total/rebuild_2026/code/build_editorial_journal_packages.py
+total/rebuild_2026/code/build_chinese_advisor_docs.py
 ```
 
 The Python plate builders use Matplotlib at the final 180 mm physical width and preserve editable PDF text. They read frozen derived TSVs under `total/rebuild_2026/data/`, which are excluded from this repository when they contain patient-level or source-controlled data. The packaging script also reads author-maintained manuscript text and local figure files under `submission/`; it cannot run from this public repository alone. The manifest and script paths document provenance, while users must obtain the original public data under each source study's terms to regenerate patient-level intermediates.
@@ -50,7 +57,7 @@ The Python plate builders use Matplotlib at the final 180 mm physical width and 
 
 1. Obtain the source datasets and follow the upstream module and `total/code/` scripts to generate the patient-, donor- and gene-level derived TSVs locally.
 2. Run the frozen robustness/targeted scripts under `total/rebuild_2026/code/` (including `revision3_reviewer_robustness.R`, `revision4_targeted_sensitivity.R` and `revision4_matched_program.R`) and the A6/A7/A8 scripts documented in the panel map.
-3. Generate the final reader-facing workbook and plates with `editorial_rebuild_tables.py`, `editorial_rebuild_figures.py` and `editorial_rebuild_supplement.py`.
+3. Generate the final reader-facing workbook with `editorial_rebuild_tables.py`, then render the plates with the corresponding `editorial_upgrade_*.py` scripts in the panel map order.
 4. Use `build_editorial_journal_packages.py` with the author-maintained manuscript source to assemble journal-specific Word/PDF files.
 
 These instructions describe the execution order and source dependencies. A clean-room end-to-end rerun from source archives has **not** been independently certified; readers should inspect eligibility manifests, script warnings and locked audit notes before interpreting a regenerated result.
