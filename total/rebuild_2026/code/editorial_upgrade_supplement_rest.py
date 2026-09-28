@@ -222,7 +222,7 @@ def sc5():
     norm=np.clip(vals/5,-1,1)
     d.imshow(norm,aspect='auto',cmap=CMAP,vmin=-1,vmax=1,interpolation='nearest')
     d.set_yticks(range(12),[f'{r.case} · {str(r.phenotype_class)[:4]}' for r in cases.itertuples()],fontsize=6.5)
-    d.set_xticks(range(3),[r'$\log_2$ ZEB1 CPM',r'$\log_2$ ZEB2 CPM',r'$\log_2$ ratio'],
+    d.set_xticks(range(3),['log2 ZEB1 CPM','log2 ZEB2 CPM','log2 ratio'],
                  rotation=25,ha='right',fontsize=6.5)
     for i,r in enumerate(cases.itertuples()):
         d.text(2.55,i,'fusion' if r.zeb2_partner=='yes' else 'enh.',
@@ -299,6 +299,7 @@ def sc8():
     panel(b2,'','Z2','ρ −.21')
     c.barh(range(15),x.n_cells,color=ETP)
     c.set_yticks(range(15),x.patient,fontsize=6.5);c.set_xscale('log')
+    c.set_xticks([100,1000],['100','1000'])
     c.set_xlabel('Malignant cells');panel(c,'C','Patient cell counts','15 biological units');grid(c,'x')
     p=paired.sort_values('d_balance').reset_index(drop=True)
     for i,r in p.iterrows():

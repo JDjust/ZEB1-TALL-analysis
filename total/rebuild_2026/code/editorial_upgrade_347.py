@@ -225,7 +225,7 @@ def _overlap_and_heldout(ax):
         ax.text(center,.92,'ZEB1 side' if side.startswith('ZEB1') else 'ZEB2 side',
                 ha='center',fontsize=7.0,weight='bold',color=color)
         p=float(camera.loc[camera.program.eq(side),'PValue'].iloc[0])
-        ptxt='$0.68$' if side.startswith('ZEB1') else '$2.0\\times10^{-11}$'
+        ptxt='0.68' if side.startswith('ZEB1') else '2.0e−11'
         ax.text(center,.21,'CAMERA P',ha='center',fontsize=6.5,color=color)
         ax.text(center,.11,ptxt,ha='center',fontsize=6.5,color=color)
     ax.text(1.0,.01,'solid = original   ·   dashed = held-out',

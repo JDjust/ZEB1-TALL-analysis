@@ -2,7 +2,7 @@
 
 Code and aggregate reader-facing outputs for the article by Zhou Q, Ni Q, Liang F, Wang H, Liang X, Li Y, Xu H, Wu C and Li L. Zhou and Ni contributed equally; Wu and Li are corresponding authors. Fuhua Liang is the third author.
 
-The current visual-redesign snapshot is `v2.0.3-submission-figures`. It contains the seven main and ten supplementary figure builders used for the current Word/PDF package. The numerical analyses come from the frozen A6/A7/A8 evidence locks; this release changes their presentation and manuscript organization, not the underlying scientific questions.
+The current visual-redesign snapshot is `v2.0.4-print-qc`. It contains the seven main and ten supplementary figure builders used for the current Word/PDF package. The numerical analyses come from the frozen A6/A7/A8 evidence locks; this release changes their presentation and manuscript organization, not the underlying scientific questions.
 
 ## Scientific scope
 
