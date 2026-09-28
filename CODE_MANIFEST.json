@@ -3,7 +3,7 @@
   "sha256": {
     ".gitattributes": "8b9c3028d6467ff3be7c793141927841d70f47f52d0590677438f488ca154992",
     ".gitignore": "c0a6595246d6f5514483ea4cbbe87ea20fab7730ae70b983368c7302d0316079",
-    "README.md": "5f7f28c463d0744de454ef94bfe541f6fb78fe4eb85d93f804aaad26eac828fd",
+    "README.md": "7c4c1d4af38989fd40190df0e476d9ea6831b1ac9a13709be07366e793019f1a",
     "modules/module1/code/00_check_py_r.sh": "fbe0ca619ea6f7b6210ec6ba1a1f9270457217f6caab5348d53d0ca0c92466a9",
     "modules/module1/code/00_check_r_pkgs.R": "123cc90101ff24c194ae6cca1608697e4ef9b94c353625eeb7d7d798d74c0ecd",
     "modules/module1/code/00_dump_clinical.R": "2e9199f50831260f4aed8c011bac480783e5cfa19ed95af14af7b71e353f36d5",
@@ -217,7 +217,7 @@
     "total/rebuild_2026/code/assemble_manuscript.py": "f209bf73513bdfa854ca7bb96f0e8974bed1a9dc6ed19fcbb72de045847c2b80",
     "total/rebuild_2026/code/audit_submission_integrity.py": "441c6534850e72ad354e07021c74540e065238a9862c40bd8ea732829f207306",
     "total/rebuild_2026/code/build_chinese_advisor_docs.py": "79164daa77b4afce941f60448f2c5d4de8e20175f68b0b7a4f42005656ee0b3d",
-    "total/rebuild_2026/code/build_editorial_journal_packages.py": "166885ec926df83119074ce55a1f8500d4e1b12cdf2cf18b338f3b9cf09f5844",
+    "total/rebuild_2026/code/build_editorial_journal_packages.py": "2912a5dee0acd0e61b87c448af6ea2eb9b9ac091062adc976034dd7a5ea2907b",
     "total/rebuild_2026/code/build_f1_ggplot_v2.R": "d9885e2fdde4251eaccf11452726970b915d13702ce1fa6fe3846b96aabf60d3",
     "total/rebuild_2026/code/build_f1_nature.R": "3a304e47e9fbb49ae703f32302579911904e6dbc30fbec6e300889298b76a96b",
     "total/rebuild_2026/code/build_f2_ggplot.R": "5df9a1adb8e5926ebfd2ca9c28ad36c9609853468e50e55446f3bd298505f9e5",
