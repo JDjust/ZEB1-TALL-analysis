@@ -1,8 +1,0 @@
-Analysis: 18 fixed developmental-score-matched BCL11B/ETP-like pairs.
-Counts: source patient count matrix; TMM/voom; pair-blocked limma model.
-Contrasts: BCL11B minus ETP-like; exploratory phenotype comparison.
-Gene set: MSigDB Hallmark via msigdbr, camera competitive test with intergene correlation.
-Neither matching nor enrichment establishes causality or direct ZEB regulation.
-edgeR 4.10.0
-limma 3.68.2
-msigdbr 26.1.0

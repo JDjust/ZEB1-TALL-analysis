@@ -1,0 +1,302 @@
+[
+  {
+    "figure": "1",
+    "returncode": 0,
+    "seconds": 23.7,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2574
+    ],
+    "render_size": [
+      2125,
+      2574
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "2",
+    "returncode": 0,
+    "seconds": 9.1,
+    "stderr": "",
+    "original_size": [
+      2125,
+      1818
+    ],
+    "render_size": [
+      2125,
+      1818
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "3",
+    "returncode": 0,
+    "seconds": 16.2,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2480
+    ],
+    "render_size": [
+      2125,
+      2480
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "4",
+    "returncode": 0,
+    "seconds": 12.2,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2208
+    ],
+    "render_size": [
+      2125,
+      2208
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "5",
+    "returncode": 0,
+    "seconds": 13.1,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2492
+    ],
+    "render_size": [
+      2125,
+      2492
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "6",
+    "returncode": 0,
+    "seconds": 6.4,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2007
+    ],
+    "render_size": [
+      2125,
+      2007
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "7",
+    "returncode": 0,
+    "seconds": 13.0,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2704
+    ],
+    "render_size": [
+      2125,
+      2704
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S1",
+    "returncode": 0,
+    "seconds": 11.6,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2539
+    ],
+    "render_size": [
+      2125,
+      2539
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S2",
+    "returncode": 0,
+    "seconds": 10.6,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2421
+    ],
+    "render_size": [
+      2125,
+      2421
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S3",
+    "returncode": 0,
+    "seconds": 7.7,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2303
+    ],
+    "render_size": [
+      2125,
+      2303
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S4",
+    "returncode": 0,
+    "seconds": 10.7,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2066
+    ],
+    "render_size": [
+      2125,
+      2066
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S5",
+    "returncode": 0,
+    "seconds": 9.4,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2185
+    ],
+    "render_size": [
+      2125,
+      2185
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S6",
+    "returncode": 0,
+    "seconds": 10.0,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2066
+    ],
+    "render_size": [
+      2125,
+      2066
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S7",
+    "returncode": 0,
+    "seconds": 8.9,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2185
+    ],
+    "render_size": [
+      2125,
+      2185
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S8",
+    "returncode": 0,
+    "seconds": 9.9,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2244
+    ],
+    "render_size": [
+      2125,
+      2244
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S9",
+    "returncode": 0,
+    "seconds": 7.1,
+    "stderr": "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\script\\_engine\\editorial_upgrade_supplement.py:43: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.\n  grouped=records.groupby([layers[k],layers[k+1]],sort=False).size()\n",
+    "original_size": [
+      2125,
+      2303
+    ],
+    "render_size": [
+      2125,
+      2303
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S10",
+    "returncode": 0,
+    "seconds": 10.1,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2362
+    ],
+    "render_size": [
+      2125,
+      2362
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S11",
+    "returncode": 0,
+    "seconds": 8.9,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2657
+    ],
+    "render_size": [
+      2125,
+      2657
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S12",
+    "returncode": 0,
+    "seconds": 5.9,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2421
+    ],
+    "render_size": [
+      2125,
+      2421
+    ],
+    "pixel_identical": true
+  },
+  {
+    "figure": "S13",
+    "returncode": 0,
+    "seconds": 9.0,
+    "stderr": "",
+    "original_size": [
+      2125,
+      2362
+    ],
+    "render_size": [
+      2125,
+      2362
+    ],
+    "pixel_identical": true
+  }
+]

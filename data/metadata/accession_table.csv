@@ -1,0 +1,26 @@
+accession,title_from_registry,source_url,registry_status
+GSE107011,RNA-Seq profiling of 29 immune cell types and peripheral blood mononuclear cells,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107011&targ=self&form=text&view=brief,retrieved
+GSE110635,Total RNA-seq in ALL-SIL upon TLX1 knockdown,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110635&targ=self&form=text&view=brief,retrieved
+GSE110636,Total RNA-seq in a primary T-ALL patient cohort,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110636&targ=self&form=text&view=brief,retrieved
+GSE110637,T-ALL,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110637&targ=self&form=text&view=brief,retrieved
+GSE13159,Microarray Innovations in LEukemia (MILE) study: Stage 1 data,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13159&targ=self&form=text&view=brief,retrieved
+GSE142522,Comprehensive RNA-seq transcriptomic profiling in normal thymocytes and adult T lymphoblastic Leukemia,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE142522&targ=self&form=text&view=brief,retrieved
+GSE144035,Loss of Ikaros promotes oncogene independence in a model of Lmo2-induced T-cell acute lymphoblastic leukemia,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144035&targ=self&form=text&view=brief,retrieved
+GSE154675,PHF6 Interacts with LMO2 During Normal Haematopoiesis and in Leukaemia and Regulates the Level of Gene Expression and Genome Integrity,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154675&targ=self&form=text&view=brief,retrieved
+GSE186943,RNA-seq and anti-LMO2 ChIP-seq data in primary T cells in different stages from LMO2 over-expressing C57BL/6J transgenic mice,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE186943&targ=self&form=text&view=brief,retrieved
+GSE188225,RNA-seq profiling of thymocytes from wildtype and Lmo2-transgenic mice,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE188225&targ=self&form=text&view=brief,retrieved
+GSE195812,"Single-cell immune profiling reveals thymus-seeding populations, T cell commitment, and multi-lineage development in the human thymus",https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE195812&targ=self&form=text&view=brief,retrieved
+GSE206710,Investigating human T cell development in the human pediatric thymus using scRNA-seq,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE206710&targ=self&form=text&view=brief,retrieved
+GSE227122,Pediatric T-cell acute lymphoblastic leukemia blast signature and MRD associated immune environment changes defined by single cell transcriptomics analysis.,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE227122&targ=self&form=text&view=brief,retrieved
+GSE243915,3D chromatin hubs as regulatory units of identity and survival in acute T-cell leukemia.,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE243915&targ=self&form=text&view=brief,retrieved
+GSE248287,Remodeling of the immune microenvironment is linked to adverse outcome in pediatric T cell acute lymphoblastic leukemia,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE248287&targ=self&form=text&view=brief,retrieved
+GSE260697,The role of quiescent thymic progenitors in TAL/LMO2-induced T-ALL chemotolerance,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE260697&targ=self&form=text&view=brief,retrieved
+GSE26713,Integrated transcript and genome analyses reveal NKX2-1 and MEF2C as potential oncogenes in T-ALL,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE26713&targ=self&form=text&view=brief,retrieved
+GSE272023,CpG island methylator phenotype classification improves risk assessment in pediatric T-cell Acute Lymphoblastic Leukemia [RNA-seq],https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE272023&targ=self&form=text&view=brief,retrieved
+GSE280728,3D chromatin hubs as regulatory units of identity and survival in acute T-cell leukemia [scATAC-Seq],https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280728&targ=self&form=text&view=brief,retrieved
+GSE287751,Transcriptional programs of in vitro-expanded HSPCs with acute disruption of Lmo2 before and after co-culture with OP9-DLL1,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE287751&targ=self&form=text&view=brief,retrieved
+GSE287757,T cell development from expanded hematopoietic progenitors reveals initiation control by Lmo2 and Flt3L priming,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE287757&targ=self&form=text&view=brief,retrieved
+GSE49164,Requirement for Lyl1 in a model of Lmo2-driven early T-cell precursor ALL,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE49164&targ=self&form=text&view=brief,retrieved
+GSE62156,Gene expression signatures of 64 T-ALL patient diagnosis samples,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE62156&targ=self&form=text&view=brief,retrieved
+GSE69954,DNA methylation adds prognostic value to minimal residual disease status in pediatric T-cell acute lymphoblastic leukemia,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE69954&targ=self&form=text&view=brief,retrieved
+GSE70734,H3K27ac ChIP-Seq in ALL-SIL,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70734&targ=self&form=text&view=brief,retrieved

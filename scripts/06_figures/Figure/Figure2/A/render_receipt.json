@@ -1,0 +1,38 @@
+{
+  "figure": "2",
+  "engine": "figure2.py",
+  "inputs": [
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\deepen_2026\\aieop120_official\\aieop120_subtype_residual_medians.tsv",
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\source_data_rebuilt\\F3\\F3B-C_patient_level.tsv",
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\source_data_rebuilt\\F3\\F3B_within_cohort_curve.tsv",
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\source_data_rebuilt\\F3\\F3D-F_subtype_statistics.tsv"
+  ],
+  "input_trace_scope": "read_csv paths; see data manifest for other input formats",
+  "panels": [
+    {
+      "panel": "A",
+      "description": "Cohort-internal balance fit",
+      "crop_pt": [
+        24.312913385826775,
+        14.346456692913307,
+        223.43307086614175,
+        213.01642716535432
+      ],
+      "source_axes": 1
+    }
+  ],
+  "width_mm": 180.0,
+  "height_mm": 154.0,
+  "journal": "canonical",
+  "minimum_font_pt": 8.0,
+  "text_outside_canvas": [],
+  "palette_name": "zeb_semantic_locked",
+  "palette_rationale": "Preserves the manuscript-defined ZEB1/ZEB2/ETP roles; custom semantic mapping documented rather than attributed to Nature.",
+  "rendered_at": "2026-09-30T17:54:11",
+  "input_sha256": {
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\deepen_2026\\aieop120_official\\aieop120_subtype_residual_medians.tsv": "39988c0eada0f7bee2c5592f8f7c04134ea00c6f9da47341c3d76987048c5462",
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\source_data_rebuilt\\F3\\F3B-C_patient_level.tsv": "f4ee6ebe557da25ba41967f1a356b2ae4128222771afd9bee66fcb158c0a5793",
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\source_data_rebuilt\\F3\\F3B_within_cohort_curve.tsv": "a9c4eb823ee90fd9dd66e25e85f1e1d40af9870e911d196ecb8a48aa4e6ccb60",
+    "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\data\\analysis\\total\\rebuild_2026\\data\\source_data_rebuilt\\F3\\F3D-F_subtype_statistics.tsv": "53109bd9ccefc483ce41cb4e98af4b0574b054861d6b597931a44b71c834d64e"
+  }
+}

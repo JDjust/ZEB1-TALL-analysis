@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "Please cite this software repository; no manuscript DOI is assigned here."
+type: software
+title: "ZEB1 T-ALL analysis and reproducible figure workflow"
+authors:
+  - name: "JDjust"
+repository-code: "https://github.com/JDjust/ZEB1-TALL-analysis"
+date-released: 2026-09-30

@@ -1,1 +1,3 @@
-* -text
+* text=auto eol=lf
+# Matplotlib SVG path formatting contains intentional end-of-line spaces.
+*.svg -whitespace

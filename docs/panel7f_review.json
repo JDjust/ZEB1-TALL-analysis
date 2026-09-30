@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "scope": "Figure7 F standalone visual inspection and PDF text/keys; other panels not inferred",
+  "png_sha256": "5f05743ce2650fdeb13c337faeef531e7441fc0004828c9fa4d677c058e30ba3",
+  "n_labels_unchanged": [
+    7,
+    47,
+    7,
+    2
+  ],
+  "change": "Removed unrelated shared keys; explicit Discovery and all four Adult subtype colours, with TLX3 open n=2 marker; complete Figure7 unchanged."
+}

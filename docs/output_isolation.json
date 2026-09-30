@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "canonical_protected_files": 181,
+  "default_panel_unchanged_other_outputs": true,
+  "journal_out_unchanged_canonical": true,
+  "public_engine_uses_external_existing_local_data": true,
+  "local_R": {
+    "command": [
+      "D:/R/R-4.6.0/bin/Rscript.exe",
+      "--vanilla",
+      "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\script\\Figure\\Figure2\\A\\panelA.R"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"figure\": \"2\", \"panels\": [\"A\"], \"inputs\": 4, \"output\": \"D:\\\\_bioinformation\\\\_ZEB1_cleanup\\\\clean_project\\\\script\\\\Figure\\\\Figure2\\\\A\"}",
+    "stderr": "During startup - Warning messages:\n1: Setting LC_COLLATE=C.UTF-8 failed \n2: Setting LC_CTYPE=C.UTF-8 failed \n3: Setting LC_MONETARY=C.UTF-8 failed \n4: Setting LC_TIME=C.UTF-8 failed"
+  },
+  "journal_export": {
+    "command": [
+      "D:/Python/python.exe",
+      "-X",
+      "utf8",
+      "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\script\\_engine\\render_figure.py",
+      "2",
+      "--journal",
+      "Blood Advances",
+      "--out",
+      "D:\\_bioinformation\\_ZEB1_cleanup\\journal_export_check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"figure\": \"2\", \"panels\": [\"A\", \"B\", \"C\", \"D\"], \"inputs\": 4, \"output\": \"D:\\\\_bioinformation\\\\_ZEB1_cleanup\\\\journal_export_check\"}",
+    "stderr": ""
+  },
+  "public_engine": {
+    "command": [
+      "D:/Python/python.exe",
+      "-X",
+      "utf8",
+      "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\GitHub\\src\\figure_engine\\render_figure.py",
+      "2",
+      "--out",
+      "D:\\_bioinformation\\_ZEB1_cleanup\\public_export_check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"figure\": \"2\", \"panels\": [\"A\", \"B\", \"C\", \"D\"], \"inputs\": 4, \"output\": \"D:\\\\_bioinformation\\\\_ZEB1_cleanup\\\\public_export_check\"}",
+    "stderr": ""
+  },
+  "public_R": {
+    "command": [
+      "D:/R/R-4.6.0/bin/Rscript.exe",
+      "--vanilla",
+      "D:\\_bioinformation\\_ZEB1_cleanup\\clean_project\\GitHub\\scripts\\06_figures\\Figure\\Figure2\\A\\panelA.R"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"figure\": \"2\", \"panels\": [\"A\"], \"inputs\": 4, \"output\": \"D:\\\\_bioinformation\\\\_ZEB1_cleanup\\\\clean_project\\\\GitHub\\\\scripts\\\\06_figures\\\\Figure\\\\Figure2\\\\A\"}",
+    "stderr": "During startup - Warning messages:\n1: Setting LC_COLLATE=C.UTF-8 failed \n2: Setting LC_CTYPE=C.UTF-8 failed \n3: Setting LC_MONETARY=C.UTF-8 failed \n4: Setting LC_TIME=C.UTF-8 failed"
+  },
+  "scope": "targeted R/engine and output isolation; no upstream reprocessing"
+}

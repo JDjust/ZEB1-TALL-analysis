@@ -1,7 +1,0 @@
-Warning messages:
-1: from glmnet C++ code (error code -1); Convergence for 1th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned
-2: In getcoef(fit, nvars, nx, vnames) :
-  an empty model has been returned; probably a convergence issue
-3: from glmnet C++ code (error code -1); Convergence for 1th lambda value not reached after maxit=100000 iterations; solutions for larger lambdas returned
-4: In getcoef(fit, nvars, nx, vnames) :
-  an empty model has been returned; probably a convergence issue

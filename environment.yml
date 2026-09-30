@@ -1,0 +1,16 @@
+name: zeb1-local-figures
+channels:
+  - conda-forge
+dependencies:
+  - python=3.14
+  - r-base=4.6.0
+  - pip
+  - pip:
+    - numpy==2.4.6
+    - pandas==2.3.3
+    - scipy==1.17.1
+    - matplotlib==3.10.9
+    - Pillow==12.2.0
+    - PyMuPDF==1.27.2.3
+    - python-docx==1.2.0
+    - openpyxl==3.1.5

@@ -1,0 +1,322 @@
+[
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse165016/GSM5024536_DND41_H3K27ac_peaks.narrowPeak.gz",
+    "bytes": 959412,
+    "sha256": "db5137053ac1fbe94048de5f1898576e77b3137ea603ab43124fb2811960c96f"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse165016/GSM5024537_DND41_BCL11B_peaks.narrowPeak.gz",
+    "bytes": 473482,
+    "sha256": "2d7e736bf0d583a35435eb5cdad80fac552677a6569d10b8b2cc96d7de12925e"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse165016/GSM5024539_SJTALL005006_H3K27ac_peaks.narrowPeak.gz",
+    "bytes": 2138799,
+    "sha256": "90ebd4ba89aab64cd81e9e0c2f3bcb5d1fa57150f31cef0283dc86fa173ff47b"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse165016/GSM5024540_SJTALL005006_BCL11B_rep1_peaks.narrowPeak.gz",
+    "bytes": 1402770,
+    "sha256": "82c7913671108238535a3bc2e0ae74098ef86dfd75f3a2a5953de44e93b0cc0d"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse165016/GSM5024541_SJTALL005006_BCL11B_rep2_peaks.narrowPeak.gz",
+    "bytes": 1427149,
+    "sha256": "f2bd0c2181fe583fde1f6b54477cce9de1a9c28d2d1954b9191602164208ffa1"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse165016/GSM5265324_BCL11B_E15804_peaks.narrowPeak.gz",
+    "bytes": 518202,
+    "sha256": "50f0092b47803714e9edf3ccfb23ea65d7046577a714a7b9abd9d5c8736e4346"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/gse173432/a3_paired_donor_deltas.tsv",
+    "bytes": 1231,
+    "sha256": "15d0b5f6115cac0f7bb964baa1e6dc17421188ce6cc61a93370caf45700408ba"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a3_gse165209/locus/a3_chip_zeb_loci.tsv",
+    "bytes": 815,
+    "sha256": "8f4440c418fc68eb6f7e49e779d96fbdf30f61f8eaaa6c3c8c1447d60d1e7ec8"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a4_yayon/a4a_donor_level_balance.tsv",
+    "bytes": 526,
+    "sha256": "2832db07dbd986019dbb8bbc6c1c67c9daea2b0f39226e06c8b74e0358b798e3"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a4_yayon/a4a_stage_balance.tsv",
+    "bytes": 3604,
+    "sha256": "10c86b54aec6f427b91a9226d6562b91ddd6b777bfa7d7bed22f4730e0a38dfb"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a4_yayon/a4ab_stage_balance_and_cma.tsv",
+    "bytes": 1961,
+    "sha256": "68ad2cf13b29585bc291f161206355116215c3c3128fbbadd49863b96165fc4e"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a4_yayon/a4b_tstate_cma_by_donor.tsv",
+    "bytes": 7712,
+    "sha256": "da1b53bcfa7ac259f6e56fd0ca242631237fb3c84a97f38ed196ac9fd2acfa1b"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a6_yayon/a6_1_donor_program.tsv",
+    "bytes": 1095,
+    "sha256": "16ab3cea18aed11cf8fb3460ed42e313579a112eecc793c5cb014db7a4e73844"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a6_yayon/a6_2_gene_effects.tsv",
+    "bytes": 7003,
+    "sha256": "bc1a97677fee86aa962b70ae58b9db482bd92ae0067205b674393b2464df9442"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7_lineage/a7_0_frozen_genes_specimen_adjusted.tsv",
+    "bytes": 12374,
+    "sha256": "ce203a3f1eecff0248ab46122407080e58fdb8396ca18c0d454d1dec2dfe91a8"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7_lineage/scores/a7a_donor_min20.tsv",
+    "bytes": 3216,
+    "sha256": "92c474c87e260f0bd7921793bbc0c4e26e06ac9661ce1ec66c60102b28dab51f"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7_lineage/scores/a7a_genes_min20.tsv",
+    "bytes": 23432,
+    "sha256": "80d4c5032c889289de0c1c5639a4bac2d0ac2d599337ae9160cbf9b3bcebc479"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7_lineage/scores/a7a_unit_logcpm_min20.tsv",
+    "bytes": 72388,
+    "sha256": "f9dd3d299c5a497ebcfec2035984d77ec47ee43dd1f0154e0d64a6ade6f84740"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7_lineage/scores/a7a_unit_scores_min10.tsv",
+    "bytes": 2677,
+    "sha256": "66059bc2d5d8917048a1e3d1edb1b973950ce2c93b9d5cec53bc335606cefbae"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7_lineage/scores/a7a_unit_scores_min20.tsv",
+    "bytes": 2552,
+    "sha256": "48bf9d087ecdb385b3e19b7f914a394e2d2f153db695288405ae7c2b413a6fb2"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7b_malignant/a7b_genes.tsv",
+    "bytes": 18349,
+    "sha256": "0ebe31ca52f20b64f965bfed90470f7b941a9c2c9f071a774b935f99b426f588"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7b_malignant/a7b_patient_scores.tsv",
+    "bytes": 2929,
+    "sha256": "621a38bf5c3fe954b1d7ea2861659d1e4ff0054e0ec01cf096e11c36a645dc48"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7c_decompose/a7c_summary.tsv",
+    "bytes": 1156,
+    "sha256": "22724e4404925e7a8c84c4a56aa5f67a21e64799b1f875cdb984e028e4d82732"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a7c_decompose/a7c_zeb2_split.tsv",
+    "bytes": 4198,
+    "sha256": "137cb54304271dc09430c39edc54db356905a0f1e791a51ce2688a6cdc454f73"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a8_adult/a8_2_merged.tsv",
+    "bytes": 94943,
+    "sha256": "14ddce93c0a36c3fcc15050093c98dc06df9b9cc4cecf24abd71f5c92ed298e9"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a8_adult/a8_2_summary.tsv",
+    "bytes": 2936,
+    "sha256": "1b0ae7ac99e788d499e39442a9d61f782bebd0912d718054f60922260701ccfb"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a8_adult/a8_genes.tsv",
+    "bytes": 16657,
+    "sha256": "73046f35c1f39e6a2161826e53a6c23d576f6a1bad065a628633ea76b153449d"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/a8_adult/a8_patient_scores.tsv",
+    "bytes": 19272,
+    "sha256": "47f4728bca8384cbd092f463888902ed5b69bf2abfa24b947cb6a1bc14e0b0a2"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/aieop120_official/aieop120_residual_with_official_labels.tsv",
+    "bytes": 25253,
+    "sha256": "b216a064b82ddd29ccd007789aa2c17e9d04eda2d7ec5f58bf44d6b22985080a"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/aieop120_official/aieop120_subtype_residual_medians.tsv",
+    "bytes": 1753,
+    "sha256": "39988c0eada0f7bee2c5592f8f7c04134ea00c6f9da47341c3d76987048c5462"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/aieop120_official/aieop120_vs_s9.tsv",
+    "bytes": 5579,
+    "sha256": "13b7a40b06ff9fabd7f36b14c3414c3f95aadd8fcd48b09367034bb3f7b6e852"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_program/all_genes_residual_effects.tsv",
+    "bytes": 3413509,
+    "sha256": "3f4beaa3181822958f0bd9cf0dd42467534a1243185f49a4d335995f8aac67f9"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_program/effect_threshold_pass.tsv",
+    "bytes": 504228,
+    "sha256": "c959c581b242c0f7622a0547861bceb0ed6a25ca6450fedc90d0dd5dbe25300d"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_program/frozen_ZEB_side50.tsv",
+    "bytes": 15575,
+    "sha256": "12a45082bc7630133db2c15df8eec2d2aaaac1d2e5c18231d317eec7f0f840aa"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_program/residual_t_primary_vs_pc15_KEYED.tsv",
+    "bytes": 1952074,
+    "sha256": "dae50dc5ff0e6f69613700de29ee61a2e9b86b15b7481e298ba8844f74fa6a60"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_sensitivity/frozen_genes_batch_adjusted.tsv",
+    "bytes": 12350,
+    "sha256": "7a75c14ed559c5573eb915da75b83ee99afc7802c3cf6b4aad86c2acad2c9bf7"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_sensitivity/heldout_ZEB_side50.tsv",
+    "bytes": 18948,
+    "sha256": "876cb1738496eabcafdb78afddd1964d841b15913182a9926068354fa8b30dc8"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_sensitivity/heldout_matched_cameraPR.tsv",
+    "bytes": 198,
+    "sha256": "f08aea431f1cb3fcffa9ef62f6c4e953849e364268031071e2f098f087a247b3"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/deepen_2026/gate2_sensitivity/heldout_vs_original_overlap.tsv",
+    "bytes": 77,
+    "sha256": "76c00195c35bb3d7059a7eae6b3c8a7ab1e48402f5f2b773aaa0cd4859218c7e"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/F1D_marker_dot_summary.tsv",
+    "bytes": 3289,
+    "sha256": "f233cea0cb9d6a0d350059ae58d837231614cc80234ca55e6a7c39ef28cdcf33"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/F2A_subtype_descriptive_medians.tsv",
+    "bytes": 1845,
+    "sha256": "8ca1de2a8671fd2293838a14504aa8ecf58192b6e90cf7acde93a0a9bc8f82a2"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/F3C_frozen100_residual_deciles.tsv",
+    "bytes": 26402,
+    "sha256": "5b68070cf0af76922333a886e39dad58b06936b9d63bd6b2e0a0d3e0a90b2706"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/F3C_residual_decile_annotations.tsv",
+    "bytes": 933,
+    "sha256": "19493d1900473c9c8f93fecf709e3fad5a2d4fbfdb6932db6959f30eb7affe2a"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/F6E_A7C_48gene_contexts.tsv",
+    "bytes": 9549,
+    "sha256": "f3fd98e202e3484b0736f2669535498ff38ffdf0df7e6e70561c16476b88af9b"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/F7G_frozen100_context_effects.tsv",
+    "bytes": 29391,
+    "sha256": "6600cec49000451e32cd55142eda4a4be7f5473e31568b49cdbba02703d6b002"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/S1D_Visium_library_detection.tsv",
+    "bytes": 2254,
+    "sha256": "3e574c466663b5e51f2553eb0faa85428c479bb3ec2120e274bd913f3eebf477"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/editorial_visual_sources/Yayon_existing_umap_ZEB1_ZEB2.tsv.gz",
+    "bytes": 4247772,
+    "sha256": "c68154d4fa821b9bf93789c6c7214b267a9ab125241b683148a45ba0fa3e8cce"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/F1/F1D_stage_tracks.tsv",
+    "bytes": 2820,
+    "sha256": "b59600200ed43e29c432538f201318d25c628a519bcf8fa6a38bb02348d47ece"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/F3/F3B-C_patient_level.tsv",
+    "bytes": 152097,
+    "sha256": "f4ee6ebe557da25ba41967f1a356b2ae4128222771afd9bee66fcb158c0a5793"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/F3/F3B_within_cohort_curve.tsv",
+    "bytes": 48656,
+    "sha256": "a9c4eb823ee90fd9dd66e25e85f1e1d40af9870e911d196ecb8a48aa4e6ccb60"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/F3/F3D-F_subtype_statistics.tsv",
+    "bytes": 3660,
+    "sha256": "53109bd9ccefc483ce41cb4e98af4b0574b054861d6b597931a44b71c834d64e"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/F4/F4C_GSE162280_cases.tsv",
+    "bytes": 1776,
+    "sha256": "920c1a0de24a7affc68b25ececa4a9fa8a4ac594e474bd2467a7f4cb00c31d83"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/F5/F5D-E_Lim_Day0_state_pairs.tsv",
+    "bytes": 4304,
+    "sha256": "d9969cb413e04ee6573ab169a3d55be4d28d826bb65996d10514e495182eaa0b"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/S3/S3B_marker_directions.tsv",
+    "bytes": 4002,
+    "sha256": "736dbfcf1a2ea8ab85f9a26db80bc73f79d620a8bf82bc7310e24582056758b2"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/S3/S3C_normal_stage_units.tsv",
+    "bytes": 1514,
+    "sha256": "c1c79f5789e515e6ef9b70c8c3f98944d4815f6f8d56d326d706ba289e33b944"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/S6/S6A_all_endpoint_models.tsv",
+    "bytes": 1541,
+    "sha256": "230dcce56dd770e7062152002ef1d6b5ab5a7d29ac26b1568d3cd1eeb51988cc"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/S7/S7D_Day0_Day28_pairs.tsv",
+    "bytes": 3234,
+    "sha256": "0be89364b0c8a52a1da8a7261209ee4a9ea204e9fbde6350ef3b37f0859cca51"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision3_robustness/alternative_coordinates_subtype_summary.tsv",
+    "bytes": 5304,
+    "sha256": "f503d5c611d6130cde4f97e8b42ad88926d82ff499fdb81ca858447af9a34468"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision3_robustness/bcl11b_etp_matched_pairs.tsv",
+    "bytes": 3349,
+    "sha256": "8f2f11bc23597b96b5e7c667b5f2fe9bdefc2a65d3487fc2e305523d1a123445"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision3_robustness/crossfit_subtype_summary.tsv",
+    "bytes": 1269,
+    "sha256": "f4dbedcaab29de9bfe3cab24843b9b1eeead912a047b0cfc6664727a3610f3f4"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision3_robustness/model_comparison.tsv",
+    "bytes": 617,
+    "sha256": "96d1a754232a6d631f1272be7b7c075c886cdfe0cb2261753f678d867a6600d7"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision4_targeted/matched_BCL11B_ETP_gene_results.tsv",
+    "bytes": 2626480,
+    "sha256": "64ca21ca1a8223dc22f5ef9ade9113e2b402cd0b1b2f39fe82985aa478cfdb4a"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision4_targeted/matched_BCL11B_ETP_hallmark_camera.tsv",
+    "bytes": 3642,
+    "sha256": "2649189d20f585796fbc0b164a7c19a4eaaa516cf194984aeb15fcfe7b0f150f"
+  },
+  {
+    "path": "data/analysis/total/rebuild_2026/data/source_data_rebuilt/revision4_targeted/spline_df_2_3_4.tsv",
+    "bytes": 876,
+    "sha256": "4622e87ad0768dfea80d4a218770c7623f81fa3a0deb99b35646caed040d9eac"
+  }
+]

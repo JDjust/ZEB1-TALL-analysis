@@ -1,0 +1,191 @@
+{
+  "status": "PASS",
+  "main_figures": 7,
+  "supplementary_figures": 13,
+  "panels": 92,
+  "frozen_inputs_checked": 64,
+  "figure_checks": [
+    {
+      "figure": "1",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 218.0
+    },
+    {
+      "figure": "2",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 154.0
+    },
+    {
+      "figure": "3",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 210.0
+    },
+    {
+      "figure": "4",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 187.0
+    },
+    {
+      "figure": "5",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 211.0
+    },
+    {
+      "figure": "6",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 170.0
+    },
+    {
+      "figure": "7",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 229.0
+    },
+    {
+      "figure": "S1",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.499999523162842,
+      "width_mm": 180.0,
+      "height_mm": 215.0
+    },
+    {
+      "figure": "S2",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 205.0
+    },
+    {
+      "figure": "S3",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 195.0
+    },
+    {
+      "figure": "S4",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 175.0
+    },
+    {
+      "figure": "S5",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 185.0
+    },
+    {
+      "figure": "S6",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 175.0
+    },
+    {
+      "figure": "S7",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 185.0
+    },
+    {
+      "figure": "S8",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 190.0
+    },
+    {
+      "figure": "S9",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 195.0
+    },
+    {
+      "figure": "S10",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 6.5,
+      "width_mm": 180.0,
+      "height_mm": 200.0
+    },
+    {
+      "figure": "S11",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 225.0
+    },
+    {
+      "figure": "S12",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 205.0
+    },
+    {
+      "figure": "S13",
+      "pages": 1,
+      "editable_text": true,
+      "type3_fonts": false,
+      "min_visible_font_pt": 8.0,
+      "width_mm": 180.0,
+      "height_mm": 200.0
+    }
+  ],
+  "failures": [],
+  "scope": "frozen local plot reproducibility and delivery integrity; not end-to-end raw-data reanalysis"
+}
