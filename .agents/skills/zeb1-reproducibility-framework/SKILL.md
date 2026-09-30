@@ -9,7 +9,7 @@ description: Optimize this ZEB1 T-ALL project through traceable data/QC, reprodu
 
 ## 执行顺序
 
-1. 读取根 README、相关 panel README 和 data/QC_LIMITATIONS.md；确认是 Full_Master、Blood Advances 还是 Scientific Reports 的稿图编号。
+1. 读取 Article/PROJECT_README.md（GitHub 发布副本读取根 README）、相关 panel README 和 data/QC_LIMITATIONS.md；确认是 Full_Master、Blood Advances 还是 Scientific Reports 的稿图编号。
 2. 从问题反向找到输入表、处理代码、实际 QC 日志和图注。按具体阶段记录四状态：代码规定（无执行证据）；已有执行证据（链接原日志、输入、参数和当时环境，并说明适用性）；本轮执行（记录命令、输入 SHA256、参数、环境和验收）；未知（列出缺失记录）。绘图、缓存重算、原始数据处理分别标记，不能扩大通过范围。数据再分发权限另外标为已核对、受限或未知。
 3. 选择能解决已观察缺陷的改动。保存数据定义与真实测量，允许改变实现、目录、字体、排版和标注。新分析若影响结论，先明确其问题、单位和所需输入。
 4. 在固定目录修订；上游重处理与冻结表绘图分开。默认单 panel 仅更新目标 panel 及 receipt；运行前后检查 canonical 整版与其他 panel 未改变。--out 的所有导出写入指定目录，裁切所需整版副产品在入口说明中注明。期刊导出与通用版本隔离。
@@ -55,3 +55,7 @@ description: Optimize this ZEB1 T-ALL project through traceable data/QC, reprodu
 期刊尺寸、字体与字母样式先查目标期刊官方指南，记录 URL、访问日期与适用文章类型。Nature skill 的通用 profile 仅作为视觉建议，不能代替 Blood Advances 或 Scientific Reports 的投稿要求。指南尚未核验时保留当前已交付期刊版并标注未重新核验，不自动套用 Nature 170 mm。
 
 独立 panel 用 owner artists 导出；逐项核对颜色、形状、大小和线型的含义，以及 n、P、CI、相关系数与冻结表/图注一致。缺必要 key、统计文字、坐标单位或出现邻图内容即 FAIL；无关共享 keys 属于可读性 WARN，不能把机械 QA 写成语义完整认证。
+
+## 目录约定
+
+本地 ZEB1 根目录仅 Article、Image、data、script、GitHub 五个文件夹。项目说明在 Article/PROJECT_README.md；审计、验证、恢复记录在 data/documentation；环境记录在 script/environment；运行入口在 script/run_all.ps1。不要在根目录创建额外说明文件、docs 或 .agents。本地技能来源包在 script/skills，安装至实际 CODEX_HOME/skills。GitHub 子目录按发布模板保留其自己的 README、环境文件与 .agents。
