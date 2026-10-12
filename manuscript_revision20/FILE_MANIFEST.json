@@ -1,0 +1,222 @@
+{
+  "schema": "zeb1.current-code-candidate/v1",
+  "source_manuscript_revision": 20,
+  "scientific_current_sha256": "86c92cd1186a5cf810e88446f453fbf8a0e9a8f22604bb9821fb712e5e0ca570",
+  "files": [
+    {
+      "path": "analysis/requirements.txt",
+      "source": "analysis/requirements.txt",
+      "sha256": "be8cdb84fa4c939530a21fafcf8635ad1a89c269faa230c630015fdd45e7b09a",
+      "bytes": 61
+    },
+    {
+      "path": "analysis/run_presubmission_analysis.py",
+      "source": "analysis/run_presubmission_analysis.py",
+      "sha256": "d5909e65ff5f1916795af0fb3d92c7f0c34338af82e2b8f0b80dd5395effc2af",
+      "bytes": 36078
+    },
+    {
+      "path": "reproduction_code/assemble.py",
+      "source": "reproduction_code/assemble.py",
+      "sha256": "aa2215d1db67934680de50389a0dc9ba37704276c0afd4eefec0e3bd2b06435c",
+      "bytes": 2864
+    },
+    {
+      "path": "reproduction_code/build_documents.py",
+      "source": "reproduction_code/build_documents.py",
+      "sha256": "0ddebbc027e3c9b3df82dec1fb7b6b47d2fed902cba4e0f9a1f76d11fd2f43d1",
+      "bytes": 5876
+    },
+    {
+      "path": "reproduction_code/document_word_readback.ps1",
+      "source": "reproduction_code/document_word_readback.ps1",
+      "sha256": "8e034c19b1626d12e70473c6c6dc633839b96d3a5a6643667b26bc011ff48256",
+      "bytes": 1220
+    },
+    {
+      "path": "reproduction_code/export_document_pdf.py",
+      "source": "reproduction_code/export_document_pdf.py",
+      "sha256": "360a4106765638ea2c279695897be32086c5a94d2bf6f53896e81b7854b0fff0",
+      "bytes": 3142
+    },
+    {
+      "path": "reproduction_code/export_editable_ppt.py",
+      "source": "reproduction_code/export_editable_ppt.py",
+      "sha256": "507829ee2a75c90deb27ef098b07d08250690f8dccef8235cb981fe7ea754329",
+      "bytes": 12352
+    },
+    {
+      "path": "reproduction_code/figure_export_fidelity_qa.py",
+      "source": "reproduction_code/figure_export_fidelity_qa.py",
+      "sha256": "965de78077c21b61e6624d5c2320912915c83f13911717a2d324915861262b5c",
+      "bytes": 3863
+    },
+    {
+      "path": "reproduction_code/office_qa.ps1",
+      "source": "reproduction_code/office_qa.ps1",
+      "sha256": "8d7fba331f9ed1ef3a85fd18accd9a1bc099465178e7bca02b176b4c703b3cd4",
+      "bytes": 3597
+    },
+    {
+      "path": "reproduction_code/render.py",
+      "source": "reproduction_code/render.py",
+      "sha256": "009acd305bc0ce469e9368222ab165d4f7ccd699c9b1448af3a5276ef17f94b7",
+      "bytes": 42413
+    },
+    {
+      "path": "reproduction_code/render_layout1.py",
+      "source": "reproduction_code/render_layout1.py",
+      "sha256": "eb407f7773d358be345bd14b31772a889e11dc02e4c33bfeeb2522f971d27f67",
+      "bytes": 26719
+    },
+    {
+      "path": "reproduction_code/render_template.py",
+      "source": "reproduction_code/render_template.py",
+      "sha256": "fd07c0bcb3461c5c62ed970af49981349e27d3c55249cc305f43baae4bf9fb3d",
+      "bytes": 26186
+    },
+    {
+      "path": "reproduction_code/requirements.rendering.txt",
+      "source": "reproduction_code/requirements.rendering.txt",
+      "sha256": "45507f07dd3ae1ce717a9c48cfa19f64d1b3c2a272bd137fb06f4a7d3d13e889",
+      "bytes": 197
+    },
+    {
+      "path": "reproduction_code/review_documents.py",
+      "source": "reproduction_code/review_documents.py",
+      "sha256": "813bd7ccdae174d39b9689e42b1cc63fe6705a9e630e68c0451d74e257dbbca6",
+      "bytes": 4155
+    },
+    {
+      "path": "method_records/01_run_cox.py",
+      "source": "method_records/01_run_cox.py",
+      "sha256": "a2b9acb498c6e8f92b22d04af99f8ea9439796e5e180cb63fc36917e03e48d99",
+      "bytes": 8262
+    },
+    {
+      "path": "method_records/02_run_nested_cindex.py",
+      "source": "method_records/02_run_nested_cindex.py",
+      "sha256": "446df9b53614d280d6bdd261d5aa11e8c7ada7658d1e9a83c98a266046c2ddac",
+      "bytes": 6646
+    },
+    {
+      "path": "method_records/03_run_residual_gsea.py",
+      "source": "method_records/03_run_residual_gsea.py",
+      "sha256": "90eb177995e766612f26b8879a9f938bd45bd34782c9bfeec543532941fb332a",
+      "bytes": 5922
+    },
+    {
+      "path": "method_records/06_extract_mutations.R",
+      "source": "method_records/06_extract_mutations.R",
+      "sha256": "15fb344897d354e6c7183af43ccb4cfa818a7d655bc0996eca77350564e54171",
+      "bytes": 1552
+    },
+    {
+      "path": "method_records/07_hulu_gse248287_keygenes.py",
+      "source": "method_records/07_hulu_gse248287_keygenes.py",
+      "sha256": "716fbbee3ee33e572a62944779a78f9a94424754638bdd0c4618cb8a4299e84f",
+      "bytes": 3707
+    },
+    {
+      "path": "method_records/08_hulu_gse248287_state_zeb1.py",
+      "source": "method_records/08_hulu_gse248287_state_zeb1.py",
+      "sha256": "0e50a4bfcd7d0be5260a594c65181893c7bedf37a86d51d5a736861e593a600e",
+      "bytes": 2313
+    },
+    {
+      "path": "method_records/12_probe_NOPHO108_fixed_maturation_replication.py",
+      "source": "method_records/12_probe_NOPHO108_fixed_maturation_replication.py",
+      "sha256": "3f15e74c917535efda1f2ba0631f233ab5fa71c80def9a0303d249a77bc2bb7b",
+      "bytes": 7545
+    },
+    {
+      "path": "method_records/13_run_AIIMS35_native_state_conditional_maturation_20261010.py",
+      "source": "method_records/13_run_AIIMS35_native_state_conditional_maturation_20261010.py",
+      "sha256": "0e4062959352f8ea3a3dca1295b96a7e7a39b7f80896109a5e96d071a6ce0fb8",
+      "bytes": 5074
+    },
+    {
+      "path": "method_records/14_run_landmark_time_effect.py",
+      "source": "method_records/14_run_landmark_time_effect.py",
+      "sha256": "b5172cf9a40e0bca1b4d7b9b05d665bfa4f2ea352a84374860fb10114722a1ea",
+      "bytes": 6964
+    },
+    {
+      "path": "method_records/15_run_multigene_maturity_clinical_sensitivity.py",
+      "source": "method_records/15_run_multigene_maturity_clinical_sensitivity.py",
+      "sha256": "4b8fd9c42246fba9d544b8f6c4b063826d57475202d22f230d8036752c5c8e68",
+      "bytes": 6831
+    },
+    {
+      "path": "method_records/16_run_joint_maturity_proxy_sensitivity.py",
+      "source": "method_records/16_run_joint_maturity_proxy_sensitivity.py",
+      "sha256": "a7bfd0b212a6bd5e40c99c3f3211caac6681031bdf26d8aa326d59fc505032ea",
+      "bytes": 2983
+    },
+    {
+      "path": "method_records/17_run_author_BMP17_conditioned_clinical_sensitivity_20261010.py",
+      "source": "method_records/17_run_author_BMP17_conditioned_clinical_sensitivity_20261010.py",
+      "sha256": "d01d22a6ff05f83203b851487d4ac6b37a9c1c0ea7de14b5c75cb945a010c465",
+      "bytes": 6910
+    },
+    {
+      "path": "method_records/18_run_same_cohort_D29_MRD_distinct_endpoint_20261010.py",
+      "source": "method_records/18_run_same_cohort_D29_MRD_distinct_endpoint_20261010.py",
+      "sha256": "24c50c67cc054ff577e95c560c35bee96b1cb1edc246ad6ba9d9a0c676089d89",
+      "bytes": 8149
+    },
+    {
+      "path": "method_records/19_run_StJude_independent_MRD_three_marker_proxy_20261010.py",
+      "source": "method_records/19_run_StJude_independent_MRD_three_marker_proxy_20261010.py",
+      "sha256": "9202831d448c45f081ce6864c097cab53cf18c082387214788035a031ce97b8c",
+      "bytes": 9692
+    },
+    {
+      "path": "method_records/20_run_normal_ZEB1_hallmark_fgsea.py",
+      "source": "method_records/20_run_normal_ZEB1_hallmark_fgsea.py",
+      "sha256": "7161a09049324730c572e31e7c331355bcf3b34c5467c9eb0a838a020aa260c2",
+      "bytes": 5232
+    },
+    {
+      "path": "method_records/27_run_lim_development.py",
+      "source": "method_records/27_run_lim_development.py",
+      "sha256": "1d9c6b17834eb41c4f97f0fb0a544a8eb1dd02774f21ac416f9134cae53a7ae1",
+      "bytes": 8471
+    },
+    {
+      "path": "method_records/33_run_zeb1_gsea.py",
+      "source": "method_records/33_run_zeb1_gsea.py",
+      "sha256": "fbbb57841772fac3e6dbda7129bf37cb01caf2619e762aecf94a137ba1262d0b",
+      "bytes": 8420
+    },
+    {
+      "path": "method_records/34_probe_independent_India25_fixed_maturation.py",
+      "source": "method_records/34_probe_independent_India25_fixed_maturation.py",
+      "sha256": "c33a87ef431f7ed341771a969a4a396fc3c53cec23190c1a4146873a10cf174c",
+      "bytes": 9176
+    },
+    {
+      "path": "method_records/35_probe_AIIMS35_fixed_maturation_replication.py",
+      "source": "method_records/35_probe_AIIMS35_fixed_maturation_replication.py",
+      "sha256": "201e5f4e22b42db798086b6149636de32bf319d2fdc7413511055a91e307041e",
+      "bytes": 7236
+    },
+    {
+      "path": "method_records/36_stage_StJude_ZEB1_patient_drug_response_20261010.py",
+      "source": "method_records/36_stage_StJude_ZEB1_patient_drug_response_20261010.py",
+      "sha256": "9c01b2e49395672dd0951e50a8aaf743dd5b83167fdec4c76d8dddb87963fd53",
+      "bytes": 11057
+    }
+  ],
+  "source_files_retained_exactly": true,
+  "withheld_files": [
+    {
+      "source": "method_records/28_verify_lim_development.py",
+      "reason": "known_unit_identifier",
+      "known_unit_hits": 1
+    }
+  ],
+  "participant_data_included": false,
+  "license_decision_pending": true,
+  "publication_kind": "CODE_ONLY_SOURCE_INSPECTION_NO_NEW_REUSE_LICENSE"
+}
